@@ -4,7 +4,8 @@ import java.awt.Color;
 
 import org.bukkit.inventory.ItemStack;
 
-public interface IInventoryHandler {
+public interface IInventoryHandler
+{
 
 	void setItemColor(ItemStack itemStack, Color color);
 

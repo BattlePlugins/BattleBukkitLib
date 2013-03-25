@@ -5,14 +5,16 @@ import mc.alk.util.handlers.ISignHandler;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 
-public class SignHandler implements ISignHandler{
+public class SignHandler implements ISignHandler
+{
 
 	@Override
-	public void sendLines(Player player, Sign sign, String[] lines) {
-//		Location loc = sign.getLocation();
-//		Packet130UpdateSign packet = new Packet130UpdateSign(loc.getBlock()
-//				.getX(), loc.getBlock().getY(), loc.getBlock().getZ(), lines);
-//		((CraftPlayer) player).getHandle().pl
+	public void sendLines(Player player, Sign sign, String[] lines)
+	{
+		// Location loc = sign.getLocation();
+		// Packet130UpdateSign packet = new Packet130UpdateSign(loc.getBlock()
+		// .getX(), loc.getBlock().getY(), loc.getBlock().getZ(), lines);
+		// ((CraftPlayer) player).getHandle().pl
 	}
 
 }
