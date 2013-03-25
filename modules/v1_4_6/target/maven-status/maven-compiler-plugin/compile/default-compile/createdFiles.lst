@@ -1,0 +1,6 @@
+mc/alk/util/handlers/ISignHandler$1.class
+mc/alk/util/compat/v1_4_6/SignHandler.class
+mc/alk/util/compat/v1_4_6/InventoryHandler.class
+mc/alk/util/handlers/IInventoryHandler.class
+mc/alk/util/handlers/ISignHandler.class
+mc/alk/util/handlers/ISignHandler$NullSignHandler.class

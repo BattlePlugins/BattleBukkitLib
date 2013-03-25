@@ -1,0 +1,10 @@
+name: BattleBukkitLib
+
+main: mc.alk.battleCore.BattleBukkitLib
+
+version: 1.2.3
+
+author: Alkarin
+softdepend: [Vault]
+description: "Libraries and common routines for Battle plugins"
+commands:
