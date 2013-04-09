@@ -34,7 +34,7 @@ public class SignUtil
 		} catch (Exception e)
 		{
 			e.printStackTrace();
-			handler = ISignHandler.NULL_HANDLER;
+			// handler = ISignHandler.NULL_HANDLER;
 		}
 	}
 
