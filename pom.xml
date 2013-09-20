@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>mc.alk</groupId>
+  <artifactId>BattleBukkitLib-parent</artifactId>
+  <packaging>pom</packaging>
+  <version>parent</version>
+  <name>BattleBukkitLib-parent</name>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <url>http://maven.apache.org</url>
+  <modules>
+    <!-- <module>modules/API</module> -->
+    <module>modules/v1_2_5</module>
+    <module>modules/v1_4_5</module>
+    <module>modules/v1_4_6</module>
+    <module>modules/v1_4_R1</module>
+    <module>modules/v1_5_R1</module>
+    <module>modules/v1_5_R2</module>
+    <module>modules/v1_5_R3</module>
+    <module>modules/v1_6_R1</module>
+    <module>modules/v1_6_R2</module>
+    <module>modules/BattleBukkitLib</module>
+  </modules>
+  <!-- Locations for jar repositories -->
+  <repositories>
+    <repository>
+      <id>bukkit-repo</id>
+      <url>http://repo.bukkit.org/content/groups/public</url>
+    </repository>
+  </repositories>
+  <!-- Dependency jars -->
+  <dependencies>
+    <!-- plugins that have their own maven repos -->
+    <!-- unknown plugins that I had to add to the repo -->
+  </dependencies>
+  <!-- How we will compile the plugin -->
+  <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-ssh</artifactId>
+        <version>2.4</version>
+      </extension>
+    </extensions>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>2.7</version>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.mycila.maven-license-plugin</groupId>
+        <artifactId>maven-license-plugin</artifactId>
+        <version>1.10.b1</version>
+        <executions>
+          <execution>
+            <phase>clean</phase>
+            <goals>
+              <goal>format</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <quiet>true</quiet>
+          <encoding>UTF-8</encoding>
+          <strictCheck>true</strictCheck>
+          <!-- <header>${basedir}/TagAPI-LICENSE</header> -->
+          <mapping>
+            <java>SLASHSTAR_STYLE</java>
+          </mapping>
+          <includes>
+            <include>src/mc/**</include>
+          </includes>
+          <excludes>
+            <exclude>src/test/**</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <distributionManagement>
+    <repository>
+      <id>battleplugins-repo</id>
+      <url>scp://server.battleplugins.com/var/www/server.battleplugins.com/htdocs/maven</url>
+    </repository>
+  </distributionManagement>
+</project>
