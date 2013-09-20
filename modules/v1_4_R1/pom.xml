@@ -78,7 +78,7 @@
   <distributionManagement>
     <repository>
       <id>battleplugins-repo</id>
-      <url>scp://server.battleplugins.com/var/www/maven/repository</url>
+      <url>scp://server.battleplugins.com/var/www/server.battleplugins.com/htdocs/maven</url>
     </repository>
   </distributionManagement>
 </project>
