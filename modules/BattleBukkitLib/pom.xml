@@ -13,6 +13,10 @@
   <!-- Locations for jar repositories -->
   <repositories>
     <repository>
+      <id>battleplugins-repo</id>
+      <url>http://server.battleplugins.com/maven/repository</url>
+    </repository>
+    <repository>
       <id>bukkit-repo</id>
       <url>http://repo.bukkit.org/content/groups/public</url>
     </repository>
