@@ -21,6 +21,7 @@
     <module>modules/v1_5_R3</module>
     <module>modules/v1_6_R1</module>
     <module>modules/v1_6_R2</module>
+    <module>modules/v1_6_R3</module>
     <module>modules/BattleBukkitLib</module>
   </modules>
   <!-- Locations for jar repositories -->
@@ -86,7 +87,7 @@
   <distributionManagement>
     <repository>
       <id>battleplugins-repo</id>
-      <url>scp://server.battleplugins.com/var/www/server.battleplugins.com/htdocs/maven</url>
+      <url>scp://server.battleplugins.com/var/www/server.battleplugins.com/htdocs/maven/repository</url>
     </repository>
   </distributionManagement>
 </project>
