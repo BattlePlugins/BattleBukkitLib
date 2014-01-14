@@ -22,6 +22,7 @@
     <module>modules/v1_6_R1</module>
     <module>modules/v1_6_R2</module>
     <module>modules/v1_6_R3</module>
+    <module>modules/v1_7_R1</module>
     <module>modules/BattleBukkitLib</module>
   </modules>
   <!-- Locations for jar repositories -->
@@ -35,6 +36,21 @@
   <dependencies>
     <!-- plugins that have their own maven repos -->
     <!-- unknown plugins that I had to add to the repo -->
+      <dependency>
+          <groupId>org.bukkit</groupId>
+          <artifactId>craftbukkit</artifactId>
+          <version>1.7.2-R0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+          <groupId>org.bukkit</groupId>
+          <artifactId>craftbukkit</artifactId>
+          <version>1.7.2-R0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+          <groupId>org.bukkit</groupId>
+          <artifactId>craftbukkit</artifactId>
+          <version>1.7.2-R0.1-SNAPSHOT</version>
+      </dependency>
   </dependencies>
   <!-- How we will compile the plugin -->
   <build>

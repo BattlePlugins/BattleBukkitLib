@@ -3,9 +3,8 @@ package mc.alk.util.compat.v1_6_R3;
 import mc.alk.util.ReflectionUtilities;
 import mc.alk.util.handlers.IParticleHandler;
 import net.minecraft.server.v1_6_R3.Packet63WorldParticles;
-
-import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_6_R3.entity.CraftPlayer;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
