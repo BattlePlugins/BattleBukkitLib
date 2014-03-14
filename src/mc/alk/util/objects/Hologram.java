@@ -1,17 +1,19 @@
-package mc.alk.util.handlers;
+package mc.alk.util.objects;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.bukkit.Location;
 
-public class BattleHologram
+public class Hologram
 {
+	public static final double SPACED_TXT = 0.25;
+	public static final double COMPACT_TEXT = 0.23;
 	private double distanceBetweenLines;
 	private ArrayList<String> lines;
 	private Location location;
 
-	public BattleHologram(String leaderboardName, double distanceBetweenLines,
+	public Hologram(String leaderboardName, double distanceBetweenLines,
 			Location location, String... lines)
 	{
 		this.lines = new ArrayList<String>();
