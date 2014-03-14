@@ -46,12 +46,6 @@ public class HologramUtils
 		hologram.setShowing(true);
 	}
 
-	public static void changeHologram(Hologram hologram, String... lines)
-	{
-		hologram.setLines(lines);
-		changeHologram(hologram);
-	}
-
 	public static void changeHologram(Hologram hologram)
 	{
 		destroyHologram(hologram);
