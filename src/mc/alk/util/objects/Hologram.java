@@ -23,9 +23,12 @@ public class Hologram
 		}
 	}
 
+	private String leaderboardName;
 	private double distanceBetweenLines;
 	private ArrayList<String> lines;
+	private ArrayList<Integer> ids;
 	private Location location;
+	private boolean showing;
 
 	public Hologram(String leaderboardName, VerticalTextSpacing type,
 			Location location, String... lines)
@@ -37,10 +40,13 @@ public class Hologram
 			Location location, String... lines)
 	{
 		this.lines = new ArrayList<String>();
+		this.ids = new ArrayList<Integer>();
+		this.leaderboardName = leaderboardName;
 		this.distanceBetweenLines = distanceBetweenLines;
 		this.lines.set(0, leaderboardName);
 		this.lines.addAll(Arrays.asList(lines));
 		this.location = location;
+		this.showing = false;
 	}
 
 	public double getDistanceBetweenLines()
@@ -53,8 +59,45 @@ public class Hologram
 		return lines;
 	}
 
+	public ArrayList<Integer> getIds()
+	{
+		return ids;
+	}
+
+	public String getLeaderboardName()
+	{
+		return leaderboardName;
+	}
+
 	public Location getLocation()
 	{
 		return location;
+	}
+
+	public void setLeaderboardName(String leaderboardName)
+	{
+		this.leaderboardName = leaderboardName;
+	}
+
+	public void setLines(String... lines)
+	{
+		this.lines.clear();
+		this.lines.set(0, leaderboardName);
+		this.lines.addAll(Arrays.asList(lines));
+	}
+
+	public void setLocation(Location location)
+	{
+		this.location = location;
+	}
+
+	public void setShowing(boolean option)
+	{
+		this.showing = option;
+	}
+
+	public boolean isShowing()
+	{
+		return showing;
 	}
 }

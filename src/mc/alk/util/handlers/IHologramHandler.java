@@ -1,13 +1,14 @@
 package mc.alk.util.handlers;
 
+import java.util.List;
+
 import mc.alk.util.objects.Hologram;
 
-import org.bukkit.Server;
-import org.bukkit.entity.Player;
+import org.bukkit.Location;
 
 public interface IHologramHandler
 {
-	public void sendHologram(Server server, Hologram hologram);
+	public boolean destroyHologram(Hologram hologram);
 
-	public void sendHologram(Player player, Hologram hologram);
+	public List<Integer> showLine(Location location, String text);
 }
