@@ -6,11 +6,11 @@ import java.util.List;
 import mc.alk.util.handlers.IHologramHandler;
 import mc.alk.util.objects.Hologram;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
 public class HologramUtils
 {
-	@SuppressWarnings("unused")
 	private static class NullHologramHandler implements IHologramHandler
 	{
 		@Override
@@ -26,7 +26,36 @@ public class HologramUtils
 		}
 	}
 
-	public static IHologramHandler handler;
+	private static IHologramHandler handler;
+
+	static
+	{
+		try
+		{
+			final String pkg = Bukkit.getServer().getClass().getPackage()
+					.getName();
+			String version = pkg.substring(pkg.lastIndexOf('.') + 1);
+			final Class<?> clazz;
+			if (version.equalsIgnoreCase("craftbukkit"))
+			{
+				clazz = Class
+						.forName("mc.alk.joining.compat.v1_2_5.SignHandler");
+			}
+			else
+			{
+				clazz = Class.forName("mc.alk.joining.compat." + version
+						+ ".SignHandler");
+			}
+			Class<?>[] args = {};
+			handler = (IHologramHandler) clazz.getConstructor(args)
+					.newInstance((Object[]) args);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			handler = new NullHologramHandler();
+		}
+	}
 
 	public static void sendHologram(Hologram hologram)
 	{
