@@ -45,7 +45,8 @@ public class InventoryUtil
 			Class<?>[] args = {};
 			handler = (IInventoryHandler) clazz.getConstructor(args)
 					.newInstance((Object[]) args);
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -122,7 +123,8 @@ public class InventoryUtil
 			return Enchantment.getByName("PROTECTION_ENVIRONMENTAL");
 		if (iname.contains("respiration"))
 			return Enchantment.getByName("OXYGEN");
-		if (iname.contains("oxygen")) return Enchantment.getByName("OXYGEN");
+		if (iname.contains("oxygen"))
+			return Enchantment.getByName("OXYGEN");
 		if (iname.contains("aqua"))
 			return Enchantment.getByName("WATER_WORKER");
 		if (iname.contains("arth"))
@@ -131,11 +133,14 @@ public class InventoryUtil
 			return Enchantment.getByName("KNOCKBACK");
 		if (iname.contains("loot"))
 			return Enchantment.getByName("LOOT_BONUS_MOBS");
-		if (iname.contains("dig")) return Enchantment.getByName("DIG_SPEED");
-		if (iname.contains("silk")) return Enchantment.getByName("SILK_TOUCH");
+		if (iname.contains("dig"))
+			return Enchantment.getByName("DIG_SPEED");
+		if (iname.contains("silk"))
+			return Enchantment.getByName("SILK_TOUCH");
 		if (iname.contains("unbreaking"))
 			return Enchantment.getByName("DURABILITY");
-		if (iname.contains("dura")) return Enchantment.getByName("DURABILITY");
+		if (iname.contains("dura"))
+			return Enchantment.getByName("DURABILITY");
 		return null;
 	}
 
@@ -220,21 +225,22 @@ public class InventoryUtil
 		for (ItemStack is : inv)
 		{
 			Armor a = armor.get(is);
-			if (a == null) continue;
+			if (a == null)
+				continue;
 			switch (a.type)
 			{
-			case BOOTS:
-				armorSet[0] = a.level;
-				break;
-			case LEGGINGS:
-				armorSet[1] = a.level;
-				break;
-			case CHEST:
-				armorSet[2] = a.level;
-				break;
-			case HELM:
-				armorSet[3] = a.level;
-				break;
+				case BOOTS:
+					armorSet[0] = a.level;
+					break;
+				case LEGGINGS:
+					armorSet[1] = a.level;
+					break;
+				case CHEST:
+					armorSet[2] = a.level;
+					break;
+				case HELM:
+					armorSet[3] = a.level;
+					break;
 			}
 		}
 		ArmorLevel lvl = null;
@@ -242,7 +248,8 @@ public class InventoryUtil
 		{
 			if (lvl == null)
 				lvl = a;
-			else if (lvl != a) return null;
+			else if (lvl != a)
+				return null;
 		}
 		return lvl;
 	}
@@ -281,7 +288,8 @@ public class InventoryUtil
 
 	public static ItemStack getItemStack(String name)
 	{
-		if (name == null || name.isEmpty()) return null;
+		if (name == null || name.isEmpty())
+			return null;
 		name = name.replace(" ", "_");
 		name = name.replace(":", ";");
 
@@ -311,7 +319,8 @@ public class InventoryUtil
 		{
 			Integer.parseInt(i);
 			return true;
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			return false;
 		}
@@ -323,7 +332,8 @@ public class InventoryUtil
 		{
 			Float.parseFloat(i);
 			return true;
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			return false;
 		}
@@ -336,7 +346,8 @@ public class InventoryUtil
 		try
 		{
 			id = Integer.parseInt(name);
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 		}
 		if (id == null)
@@ -352,7 +363,8 @@ public class InventoryUtil
 		name = name.toUpperCase();
 		// / First try just getting it from the Material Name
 		Material mat = Material.getMaterial(name);
-		if (mat != null) return mat.getId();
+		if (mat != null)
+			return mat.getId();
 		// / Might be an abbreviation, or a more complicated
 		int temp = Integer.MAX_VALUE;
 		mat = null;
@@ -443,7 +455,8 @@ public class InventoryUtil
 		try
 		{
 			p.updateInventory();
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 		}
 	}
@@ -471,12 +484,14 @@ public class InventoryUtil
 		{
 			addItemToInventory(inv, itemStack, stockAmount);
 		}
-		if (update) try
-		{
-			player.updateInventory();
-		} catch (Exception e)
-		{
-		}
+		if (update)
+			try
+			{
+				player.updateInventory();
+			}
+			catch (Exception e)
+			{
+			}
 	}
 
 	private static void addArmorToInventory(PlayerInventory inv,
@@ -502,19 +517,19 @@ public class InventoryUtil
 		{
 			switch (armor.get(itemType).type)
 			{
-			case HELM:
-				if (empty || (better && !ignoreCustomHelmet))
-					inv.setHelmet(itemStack);
-				break;
-			case CHEST:
-				inv.setChestplate(itemStack);
-				break;
-			case LEGGINGS:
-				inv.setLeggings(itemStack);
-				break;
-			case BOOTS:
-				inv.setBoots(itemStack);
-				break;
+				case HELM:
+					if (empty || (better && !ignoreCustomHelmet))
+						inv.setHelmet(itemStack);
+					break;
+				case CHEST:
+					inv.setChestplate(itemStack);
+					break;
+				case LEGGINGS:
+					inv.setLeggings(itemStack);
+					break;
+				case BOOTS:
+					inv.setBoots(itemStack);
+					break;
 			}
 		}
 		if (!empty)
@@ -544,14 +559,14 @@ public class InventoryUtil
 	{
 		switch (armorType)
 		{
-		case HELM:
-			return inv.getHelmet();
-		case CHEST:
-			return inv.getChestplate();
-		case LEGGINGS:
-			return inv.getLeggings();
-		case BOOTS:
-			return inv.getBoots();
+			case HELM:
+				return inv.getHelmet();
+			case CHEST:
+				return inv.getChestplate();
+			case LEGGINGS:
+				return inv.getLeggings();
+			case BOOTS:
+				return inv.getBoots();
 		}
 		return null;
 	}
@@ -601,7 +616,8 @@ public class InventoryUtil
 		try
 		{
 			p.closeInventory();
-		} catch (Exception closeInventoryError)
+		}
+		catch (Exception closeInventoryError)
 		{
 			// / This almost always throws an NPE, but does its job so ignore
 		}
@@ -619,7 +635,8 @@ public class InventoryUtil
 				inv.setArmorContents(null);
 				inv.setItemInHand(null);
 			}
-		} catch (Exception ee)
+		}
+		catch (Exception ee)
 		{
 			ee.printStackTrace();
 		}
@@ -650,7 +667,8 @@ public class InventoryUtil
 		try
 		{
 			p.updateInventory();
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 		}
 	}
@@ -660,7 +678,8 @@ public class InventoryUtil
 		// System.out.println("string = " + str);
 		str = str.replaceAll("[}{]", "");
 		str = str.replaceAll("=", " ");
-		if (DEBUG) System.out.println("item=" + str);
+		if (DEBUG)
+			System.out.println("item=" + str);
 		ItemStack is = null;
 		try
 		{
@@ -673,13 +692,15 @@ public class InventoryUtil
 				try
 				{
 					is.addEnchantment(ewl.e, ewl.lvl);
-				} catch (IllegalArgumentException iae)
+				}
+				catch (IllegalArgumentException iae)
 				{
 					Logger.getLogger("minecraft").warning(
 							ewl + " can not be applied to the item " + str);
 				}
 			}
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 			Logger.getLogger("minecraft").severe("Couldnt parse item=" + str);
@@ -704,7 +725,8 @@ public class InventoryUtil
 			try
 			{
 				lvl = Integer.parseInt(str.substring(index + 1));
-			} catch (Exception err)
+			}
+			catch (Exception err)
 			{
 			}
 			str = str.substring(0, index);
@@ -714,12 +736,16 @@ public class InventoryUtil
 		try
 		{
 			e = Enchantment.getById(Integer.valueOf(str));
-		} catch (Exception err)
+		}
+		catch (Exception err)
 		{
 		}
-		if (e == null) e = Enchantment.getByName(str);
-		if (e == null) e = getEnchantmentByCommonName(str);
-		if (e == null) return null;
+		if (e == null)
+			e = Enchantment.getByName(str);
+		if (e == null)
+			e = getEnchantmentByCommonName(str);
+		if (e == null)
+			return null;
 		EnchantmentWithLevel ewl = new EnchantmentWithLevel();
 		ewl.e = e;
 		if (lvl < e.getStartLevel())
@@ -779,7 +805,7 @@ public class InventoryUtil
 
 	/**
 	 * For Serializing an item or printing
-	 *
+	 * 
 	 * @param is
 	 * @return
 	 */
@@ -804,7 +830,8 @@ public class InventoryUtil
 			if (is != null && is.getType() != Material.AIR)
 			{
 				Map<Enchantment, Integer> enc = is.getEnchantments();
-				if (enc != null && !enc.isEmpty()) return true;
+				if (enc != null && !enc.isEmpty())
+					return true;
 			}
 		}
 		for (ItemStack is : inv.getArmorContents())
@@ -812,7 +839,8 @@ public class InventoryUtil
 			if (is != null && is.getType() != Material.AIR)
 			{
 				Map<Enchantment, Integer> enc = is.getEnchantments();
-				if (enc != null && !enc.isEmpty()) return true;
+				if (enc != null && !enc.isEmpty())
+					return true;
 			}
 		}
 		return false;
@@ -825,7 +853,8 @@ public class InventoryUtil
 		{
 			int amount = getItemAmountFromInventory(inv, is);
 			// System.out.println("Checking " + is +"   amount = " + amount);
-			if (amount < is.getAmount()) return false;
+			if (amount < is.getAmount())
+				return false;
 		}
 		return true;
 	}
@@ -849,7 +878,8 @@ public class InventoryUtil
 		for (int i = 0; i < inventory.length; i++)
 		{
 			ItemStack is2 = inventory[i];
-			if (is2 == null) continue;
+			if (is2 == null)
+				continue;
 			if (is1.getTypeId() == is2.getTypeId()
 					&& is1.getDurability() == is2.getDurability())
 			{
@@ -864,7 +894,7 @@ public class InventoryUtil
 	 * difference is my ItemStack == ItemStack comparison (found in first())
 	 * there I change it to go by itemid and datavalue as opposed to itemid and
 	 * quantity
-	 *
+	 * 
 	 * @param inv
 	 * @param items
 	 * @return

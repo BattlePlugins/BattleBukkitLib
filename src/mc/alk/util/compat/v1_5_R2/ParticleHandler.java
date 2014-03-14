@@ -31,7 +31,8 @@ public class ParticleHandler implements IParticleHandler
 			ReflectionUtilities.setValue(packet, "i", count);
 			((CraftPlayer) player).getHandle().playerConnection
 					.sendPacket(packet);
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}

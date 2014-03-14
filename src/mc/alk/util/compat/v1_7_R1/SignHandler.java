@@ -17,8 +17,9 @@ public class SignHandler implements ISignHandler
 	public void sendLines(Player player, Sign sign, String[] lines)
 	{
 		Location loc = sign.getLocation();
-        PacketPlayOutUpdateSign packet = new PacketPlayOutUpdateSign(loc.getBlock()
-				.getX(), loc.getBlock().getY(), loc.getBlock().getZ(), lines);
+		PacketPlayOutUpdateSign packet = new PacketPlayOutUpdateSign(loc
+				.getBlock().getX(), loc.getBlock().getY(), loc.getBlock()
+				.getZ(), lines);
 		((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
 	}
 

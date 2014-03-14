@@ -29,8 +29,10 @@ public class ParticleHandler implements IParticleHandler
 			ReflectionUtilities.setValue(packet, "g", offSet.getBlockZ());
 			ReflectionUtilities.setValue(packet, "h", speed);
 			ReflectionUtilities.setValue(packet, "i", count);
-			((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
-		} catch (Exception e)
+			((CraftPlayer) player).getHandle().playerConnection
+					.sendPacket(packet);
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
