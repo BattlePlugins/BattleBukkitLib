@@ -2,6 +2,7 @@ package mc.alk.util.compat.v1_7_R1;
 
 import mc.alk.util.handlers.IParticleHandler;
 import net.minecraft.server.v1_7_R1.PacketPlayOutWorldParticles;
+
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_7_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
@@ -12,7 +13,6 @@ import org.bukkit.util.Vector;
  */
 public class ParticleHandler implements IParticleHandler
 {
-
 	@Override
 	public void sendEffect(Player player, ParticleEffects effectType,
 			Location location, Vector offSet, int speed, int count)
