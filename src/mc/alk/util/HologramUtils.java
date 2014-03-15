@@ -39,12 +39,12 @@ public class HologramUtils
 			if (version.equalsIgnoreCase("craftbukkit"))
 			{
 				clazz = Class
-						.forName("mc.alk.joining.compat.v1_2_5.SignHandler");
+						.forName("mc.alk.joining.compat.v1_2_5.HologramHandler");
 			}
 			else
 			{
 				clazz = Class.forName("mc.alk.joining.compat." + version
-						+ ".SignHandler");
+						+ ".HologramHandler");
 			}
 			Class<?>[] args = {};
 			handler = (IHologramHandler) clazz.getConstructor(args)
