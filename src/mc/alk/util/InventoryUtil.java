@@ -35,12 +35,12 @@ public class InventoryUtil
 			if (version.equalsIgnoreCase("craftbukkit"))
 			{
 				clazz = Class
-						.forName("mc.alk.joining.compat.v1_2_5.InventoryHandler");
+						.forName("mc.alk.util.compat.v1_2_5.InventoryHandler");
 			}
 			else
 			{
 				clazz = Class
-						.forName("mc.alk.joining.compat.v1_4_6.InventoryHandler");
+						.forName("mc.alk.util.compat.v1_4_6.InventoryHandler");
 			}
 			Class<?>[] args = {};
 			handler = (IInventoryHandler) clazz.getConstructor(args)

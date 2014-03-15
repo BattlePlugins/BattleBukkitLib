@@ -28,12 +28,11 @@ public class SignUtil
 			final Class<?> clazz;
 			if (version.equalsIgnoreCase("craftbukkit"))
 			{
-				clazz = Class
-						.forName("mc.alk.joining.compat.v1_2_5.SignHandler");
+				clazz = Class.forName("mc.alk.util.compat.v1_2_5.SignHandler");
 			}
 			else
 			{
-				clazz = Class.forName("mc.alk.joining.compat." + version
+				clazz = Class.forName("mc.alk.util.compat." + version
 						+ ".SignHandler");
 			}
 			Class<?>[] args = {};
