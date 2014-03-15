@@ -23,27 +23,24 @@ public class Hologram
 		}
 	}
 
-	private String leaderboardName;
 	private double distanceBetweenLines;
 	private ArrayList<String> lines;
 	private ArrayList<Integer> ids;
 	private Location location;
 	private boolean showing;
 
-	public Hologram(String leaderboardName, VerticalTextSpacing type,
-			Location location, String... lines)
+	public Hologram(VerticalTextSpacing type, Location location,
+			String... lines)
 	{
-		this(leaderboardName, type.spacing(), location, lines);
+		this(type.spacing(), location, lines);
 	}
 
-	public Hologram(String leaderboardName, double distanceBetweenLines,
-			Location location, String... lines)
+	public Hologram(double distanceBetweenLines, Location location,
+			String... lines)
 	{
 		this.lines = new ArrayList<String>();
 		this.ids = new ArrayList<Integer>();
-		this.leaderboardName = leaderboardName;
 		this.distanceBetweenLines = distanceBetweenLines;
-		this.lines.add(leaderboardName);
 		this.lines.addAll(Arrays.asList(lines));
 		this.location = location;
 		this.showing = false;
@@ -64,25 +61,14 @@ public class Hologram
 		return ids;
 	}
 
-	public String getLeaderboardName()
-	{
-		return leaderboardName;
-	}
-
 	public Location getLocation()
 	{
 		return location;
 	}
 
-	public void setLeaderboardName(String leaderboardName)
-	{
-		this.leaderboardName = leaderboardName;
-	}
-
 	public void setLines(String... lines)
 	{
 		this.lines.clear();
-		this.lines.add(leaderboardName);
 		this.lines.addAll(Arrays.asList(lines));
 	}
 
