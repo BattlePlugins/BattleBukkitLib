@@ -9,7 +9,7 @@ public class Hologram
 {
 	public enum VerticalTextSpacing
 	{
-		COMPACT(0.23), SPACED(0.25);
+		COMPACT(0.30), SPACED(0.40);
 		private final double spacing;
 
 		VerticalTextSpacing(double spacing)
