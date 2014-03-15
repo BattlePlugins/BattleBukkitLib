@@ -9,7 +9,7 @@ import mc.alk.util.objects.Hologram;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
-public class HologramUtils
+public class HologramUtil
 {
 	private static class NullHologramHandler implements IHologramHandler
 	{

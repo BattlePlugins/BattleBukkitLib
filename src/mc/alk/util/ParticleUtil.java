@@ -8,7 +8,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
-public class ParticleUtils
+public class ParticleUtil
 {
 	private static class NullParticleHandler implements IParticleHandler
 	{
