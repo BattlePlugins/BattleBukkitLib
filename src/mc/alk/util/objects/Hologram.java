@@ -43,7 +43,7 @@ public class Hologram
 		this.ids = new ArrayList<Integer>();
 		this.leaderboardName = leaderboardName;
 		this.distanceBetweenLines = distanceBetweenLines;
-		this.lines.set(0, leaderboardName);
+		this.lines.add(leaderboardName);
 		this.lines.addAll(Arrays.asList(lines));
 		this.location = location;
 		this.showing = false;
@@ -82,7 +82,7 @@ public class Hologram
 	public void setLines(String... lines)
 	{
 		this.lines.clear();
-		this.lines.set(0, leaderboardName);
+		this.lines.add(leaderboardName);
 		this.lines.addAll(Arrays.asList(lines));
 	}
 
