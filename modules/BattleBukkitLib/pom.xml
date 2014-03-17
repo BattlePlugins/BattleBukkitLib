@@ -140,12 +140,12 @@
           <exclude>**/*</exclude>
         </excludes>
       </resource>
-      <!--<resource>-->
-        <!--<directory>../../src/java/mc/alk/util/compat</directory>-->
-        <!--<excludes>-->
-          <!--<exclude>**/*</exclude>-->
-        <!--</excludes>-->
-      <!--</resource>-->
+      <resource>
+        <directory>../../src/java/mc/alk/util/compat</directory>
+        <excludes>
+          <exclude>**/*</exclude>
+        </excludes>
+      </resource>
     </resources>
     <!-- Specify how we build the plugin.jar -->
     <plugins>
