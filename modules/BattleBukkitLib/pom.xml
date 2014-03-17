@@ -168,7 +168,7 @@
                 <version>3.0</version>
                 <configuration>
                     <excludes>
-                        <exclude>alk/util/compat/**</exclude>
+                        <exclude>mc/alk/util/compat/**</exclude>
                     </excludes>
                 </configuration>
             </plugin>
