@@ -36,8 +36,8 @@
         <version>2.4</version>
       </extension>
     </extensions>
-    
-    <sourceDirectory>../../src</sourceDirectory>
+
+    <sourceDirectory>../../src/java</sourceDirectory>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
