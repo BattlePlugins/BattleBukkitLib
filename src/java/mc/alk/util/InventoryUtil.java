@@ -1,15 +1,6 @@
 package mc.alk.util;
 
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Logger;
-
 import mc.alk.util.handlers.IInventoryHandler;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -17,6 +8,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Logger;
 
 public class InventoryUtil
 {
@@ -52,7 +51,7 @@ public class InventoryUtil
 		}
 	}
 
-	public static class Armor
+	static class Armor
 	{
 		public ArmorLevel level;
 		public ArmorType type;
@@ -64,7 +63,7 @@ public class InventoryUtil
 		}
 	}
 
-	public static class EnchantmentWithLevel
+	static class EnchantmentWithLevel
 	{
 		public EnchantmentWithLevel()
 		{
@@ -86,12 +85,12 @@ public class InventoryUtil
 		}
 	}
 
-	public enum ArmorLevel
+	enum ArmorLevel
 	{
 		WOOL, LEATHER, IRON, GOLD, CHAINMAIL, DIAMOND
 	};
 
-	public enum ArmorType
+	enum ArmorType
 	{
 		HELM, CHEST, LEGGINGS, BOOTS
 	};
@@ -805,7 +804,7 @@ public class InventoryUtil
 
 	/**
 	 * For Serializing an item or printing
-	 * 
+	 *
 	 * @param is
 	 * @return
 	 */
@@ -894,7 +893,7 @@ public class InventoryUtil
 	 * difference is my ItemStack == ItemStack comparison (found in first())
 	 * there I change it to go by itemid and datavalue as opposed to itemid and
 	 * quantity
-	 * 
+	 *
 	 * @param inv
 	 * @param items
 	 * @return
