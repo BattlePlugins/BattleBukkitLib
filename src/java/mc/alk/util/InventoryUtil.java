@@ -804,7 +804,7 @@ public class InventoryUtil
 
 	/**
 	 * For Serializing an item or printing
-	 *
+	 * 
 	 * @param is
 	 * @return
 	 */
@@ -893,7 +893,7 @@ public class InventoryUtil
 	 * difference is my ItemStack == ItemStack comparison (found in first())
 	 * there I change it to go by itemid and datavalue as opposed to itemid and
 	 * quantity
-	 *
+	 * 
 	 * @param inv
 	 * @param items
 	 * @return
