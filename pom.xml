@@ -9,10 +9,12 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-  <url>http://maven.apache.org</url>
+  <url>https://github.com/BattlePlugins/BattleBukkitLib</url>
   <modules>
-    <!-- <module>modules/API</module> -->
+    <module>modules/api</module>
     <module>modules/v1_2_5</module>
+    <module>modules/v1_3_2</module>
+    <module>modules/v1_4_2</module>
     <module>modules/v1_4_5</module>
     <module>modules/v1_4_6</module>
     <module>modules/v1_4_R1</module>
@@ -34,23 +36,12 @@
   </repositories>
   <!-- Dependency jars -->
   <dependencies>
-    <!-- plugins that have their own maven repos -->
-    <!-- unknown plugins that I had to add to the repo -->
-      <dependency>
-          <groupId>org.bukkit</groupId>
-          <artifactId>craftbukkit</artifactId>
-          <version>1.7.2-R0.1-SNAPSHOT</version>
-      </dependency>
-      <dependency>
-          <groupId>org.bukkit</groupId>
-          <artifactId>craftbukkit</artifactId>
-          <version>1.7.2-R0.1-SNAPSHOT</version>
-      </dependency>
-      <dependency>
-          <groupId>org.bukkit</groupId>
-          <artifactId>craftbukkit</artifactId>
-          <version>1.7.2-R0.1-SNAPSHOT</version>
-      </dependency>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>3.8.1</version>
+        <scope>test</scope>
+    </dependency>
   </dependencies>
   <!-- How we will compile the plugin -->
   <build>

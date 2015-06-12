@@ -1,21 +1,24 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>mc.alk</groupId>
+        <artifactId>BattleBukkitLib-parent</artifactId>
+        <version>parent</version>
+        <relativePath>../../</relativePath>
+    </parent>
     <groupId>mc.alk</groupId>
     <artifactId>BattleBukkitLib</artifactId>
+    <version>1.0.6</version>
     <packaging>jar</packaging>
-    <version>1.0.5</version>
     <name>BattleBukkitLib</name>
+    <url>https://github.com/BattlePlugins/BattleBukkitLib</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <url>http://maven.apache.org</url>
     <!-- Locations for jar repositories -->
     <repositories>
-        <repository>
-            <id>battleplugins-repo</id>
-            <url>http://server.battleplugins.com/maven/repository</url>
-        </repository>
         <repository>
             <id>bukkit-repo</id>
             <url>http://repo.bukkit.org/content/groups/public</url>
@@ -34,6 +37,20 @@
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_2_5</artifactId>
             <version>v1_2_5</version>
+            <type>jar</type>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>mc.alk</groupId>
+            <artifactId>BattleBukkitLib-v1_3_2</artifactId>
+            <version>v1_3_2</version>
+            <type>jar</type>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>mc.alk</groupId>
+            <artifactId>BattleBukkitLib-v1_4_2</artifactId>
+            <version>v1_4_2</version>
             <type>jar</type>
             <optional>true</optional>
         </dependency>
@@ -111,6 +128,10 @@
     </dependencies>
     <!-- How we will compile the plugin -->
     <build>
+        <finalName>BattleBukkitLib</finalName>
+        <directory>../../target</directory>
+        <sourceDirectory>./src/main/java</sourceDirectory>
+        <defaultGoal>install</defaultGoal>
         <extensions>
             <extension>
                 <groupId>org.apache.maven.wagon</groupId>
@@ -118,30 +139,10 @@
                 <version>2.4</version>
             </extension>
         </extensions>
-        <finalName>BattleBukkitLib</finalName>
-        <directory>../../target</directory>
-        <defaultGoal>install</defaultGoal>
-        <!-- Where our source directory is -->
-        <sourceDirectory>../../src/java</sourceDirectory>
         <resources>
-            <!-- Include all the resources we need -->
-            <resource>
-                <targetPath>.</targetPath>
-                <filtering>true</filtering>
-                <directory>../..</directory>
-                <includes>
-                    <include>plugin.yml</include>
-                </includes>
-            </resource>
             <!-- Exclude JUnit test directory -->
             <resource>
-                <directory>../../src/test</directory>
-                <excludes>
-                    <exclude>**/*</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <directory>../../src/java/mc/alk/util/compat</directory>
+                <directory>./src/test</directory>
                 <excludes>
                     <exclude>**/*</exclude>
                 </excludes>
@@ -169,6 +170,9 @@
                 <configuration>
                     <excludes>
                         <exclude>mc/alk/util/compat/**</exclude>
+                        <exclude>mc/alk/util/handlers/**</exclude>
+                        <exclude>mc/alk/util/objects/**</exclude>
+
                     </excludes>
                 </configuration>
             </plugin>
@@ -205,10 +209,4 @@
             </plugin>
         </plugins>
     </build>
-    <distributionManagement>
-        <repository>
-            <id>battleplugins-repo</id>
-            <url>scp://server.battleplugins.com/var/www/server.battleplugins.com/htdocs/maven/repository</url>
-        </repository>
-    </distributionManagement>
 </project>
