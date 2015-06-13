@@ -18,6 +18,16 @@
         <maven.build.timestamp.format>MMdd</maven.build.timestamp.format>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <repositories>
+        <repository>
+            <id>fanciful-mvn-repo</id>
+            <url>http://repo.franga2000.com/artifactory/public</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
     <dependencies>
         <dependency>
             <groupId>org.bukkit</groupId>
@@ -30,6 +40,11 @@
             <artifactId>Version</artifactId>
             <version>2.0</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>mkremins</groupId>
+            <artifactId>fanciful</artifactId>
+            <version>0.3.3-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -68,10 +83,19 @@
                                     <pattern>mc.euro.version</pattern>
                                     <shadedPattern>mc.alk.util.version</shadedPattern>
                                 </relocation>
+                                <relocation>
+                                    <pattern>mkremins.fanciful</pattern>
+                                    <shadedPattern>mc.alk.util.fanciful</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>net.amoebaman.util</pattern>
+                                    <shadedPattern>mc.alk.util.amoebaman</shadedPattern>
+                                </relocation>
                             </relocations>
                             <artifactSet>
                                 <includes>
                                     <include>mc.euro:Version</include>
+                                    <include>mkremins:fanciful</include>
                                 </includes>
                             </artifactSet>
                             <minimizeJar>false</minimizeJar>
