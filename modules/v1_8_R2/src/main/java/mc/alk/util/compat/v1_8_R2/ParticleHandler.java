@@ -25,13 +25,18 @@ public class ParticleHandler implements IParticleHandler {
             // http://wiki.vg/Protocol#Particle
             // PacketPlayOutWorldParticles(EnumParticle enumparticle, boolean flag, float x, float y, float z, float offsetX, float offsetY, float offsetZ, float particleData, int particleCount, int... extraData)
             PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles(
-                    particle, false, // Change particle distance from 256 to 65536 ?
-                    (float) location.getX(),(float) location.getY(), (float) location.getZ(),
-                    offSet.getBlockX(), offSet.getBlockY(), offSet.getBlockZ(),
-                    (float) speed, count);
+                    particle, 
+                    false, // Change particle distance from 256 to 65536 ?
+                    (float) location.getX(),
+                    (float) location.getY(),
+                    (float) location.getZ(),
+                    (float) offSet.getX(), 
+                    (float) offSet.getY(), 
+                    (float) offSet.getZ(),
+                    (float) speed, 
+                    count);
 
-            ((CraftPlayer) player).getHandle().playerConnection
-                    .sendPacket(packet);
+            ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
         } catch (Exception e) {
             e.printStackTrace();
         }

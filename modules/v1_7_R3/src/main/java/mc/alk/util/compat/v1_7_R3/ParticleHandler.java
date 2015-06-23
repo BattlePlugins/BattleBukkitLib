@@ -18,13 +18,17 @@ public class ParticleHandler implements IParticleHandler {
             Location location, Vector offSet, int speed, int count) {
         try {
             PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles(
-                    effectType.getParticleName(), (float) location.getX(),
-                    (float) location.getY(), (float) location.getZ(),
-                    offSet.getBlockX(), offSet.getBlockY(), offSet.getBlockZ(),
-                    speed, count);
+                    effectType.getParticleName(), 
+                    (float) location.getX(),
+                    (float) location.getY(), 
+                    (float) location.getZ(),
+                    (float) offSet.getX(), 
+                    (float) offSet.getY(), 
+                    (float) offSet.getZ(),
+                    (float) speed, 
+                    count);
 
-            ((CraftPlayer) player).getHandle().playerConnection
-                    .sendPacket(packet);
+            ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
         } catch (Exception e) {
             e.printStackTrace();
         }
