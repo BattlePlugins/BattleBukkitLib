@@ -1,13 +1,5 @@
 package mc.alk.util;
 
-import mc.alk.util.handlers.IInventoryHandler;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -17,31 +9,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import mc.alk.util.factory.InventoryHandlerFactory;
+import mc.alk.util.handlers.IInventoryHandler;
+
+import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
+
 public class InventoryUtil {
 
     static final String version = "InventoryUtil 2.1.5";
     static final boolean DEBUG = false;
-    static IInventoryHandler handler = null;
-
-    static {
-        try {
-            final String pkg = Bukkit.getServer().getClass().getPackage()
-                    .getName();
-            String version = pkg.substring(pkg.lastIndexOf('.') + 1);
-            final Class<?> clazz;
-            if (version.equalsIgnoreCase("craftbukkit")) {
-                clazz = Class
-                        .forName("mc.alk.util.compat.v1_2_5.InventoryHandler");
-            } else {
-                clazz = Class
-                        .forName("mc.alk.util.compat.v1_4_6.InventoryHandler");
-            }
-            Class<?>[] args = {};
-            handler = (IInventoryHandler) clazz.getConstructor(args).newInstance((Object[]) args);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    static IInventoryHandler handler = InventoryHandlerFactory.getNewInstance();
 
     static class Armor {
 
