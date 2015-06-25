@@ -1,4 +1,4 @@
-package mc.alk.util.compat.v1_4_7;
+package mc.alk.util.compat.v1_4_R1;
 
 import mc.alk.util.handlers.ISignHandler;
 import net.minecraft.server.v1_4_R1.Packet130UpdateSign;
