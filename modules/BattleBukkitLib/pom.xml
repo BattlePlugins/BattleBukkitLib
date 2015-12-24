@@ -10,7 +10,7 @@
     </parent>
     <groupId>mc.alk</groupId>
     <artifactId>BattleBukkitLib</artifactId>
-    <version>2.3.1</version>
+    <version>2.3.1.1</version>
     <packaging>jar</packaging>
     <name>BattleBukkitLib</name>
     <url>https://github.com/BattlePlugins/BattleBukkitLib</url>
@@ -22,6 +22,10 @@
         <repository>
             <id>bukkit-repo</id>
             <url>http://repo.bukkit.org/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>rainbowcraft-repo</id>
+            <url>http://rainbowcraft.sytes.net/maven/repository/</url>
         </repository>
     </repositories>
     <!-- Dependency jars -->

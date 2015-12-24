@@ -20,6 +20,14 @@
     </properties>
     <repositories>
         <repository>
+            <id>bukkit-repo</id>
+            <url>http://repo.bukkit.org/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>rainbowcraft-repo</id>
+            <url>http://rainbowcraft.sytes.net/maven/repository/</url>
+        </repository>
+        <repository>
             <id>fanciful-mvn-repo</id>
             <url>http://repo.franga2000.com/artifactory/public</url>
             <snapshots>
