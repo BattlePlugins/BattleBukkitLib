@@ -1,4 +1,4 @@
-package mc.alk.util.compat.v1_10_R1;
+package mc.alk.util.compat.v1_11_R1;
 
 import mc.alk.util.handlers.IHologramHandler;
 import mc.alk.util.objects.Hologram;
