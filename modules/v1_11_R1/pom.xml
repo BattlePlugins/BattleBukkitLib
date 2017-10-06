@@ -45,6 +45,7 @@
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-api</artifactId>
             <version>api</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
     <build>
