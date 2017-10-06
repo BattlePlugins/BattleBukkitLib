@@ -1,4 +1,4 @@
-package main.java.mc.alk.util.compat.v1_9_R2;
+package mc.alk.util.compat.v1_9_R2;
 
 import mc.alk.util.handlers.IParticleHandler;
 import net.minecraft.server.v1_9_R2.EnumParticle;
@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 /**
- * For craftbukkit 1.8.7 <br/><br/>
+ * For craftbukkit 1.9.4 <br/><br/>
  * 
  * http://wiki.vg/Protocol#Particle
  */

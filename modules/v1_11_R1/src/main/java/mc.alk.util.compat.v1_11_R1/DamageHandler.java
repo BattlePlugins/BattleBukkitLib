@@ -1,9 +1,9 @@
-package main.java.mc.alk.util.compat.v1_9_R2;
+package mc.alk.util.compat.v1_10_R1;
 
 import mc.alk.util.handlers.IDamageHandler;
-import net.minecraft.server.v1_12_R1.DamageSource;
-import net.minecraft.server.v1_12_R1.EntityPlayer;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import net.minecraft.server.v1_11_R1.DamageSource;
+import net.minecraft.server.v1_11_R1.EntityPlayer;
+import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 public class DamageHandler implements IDamageHandler {

@@ -2,18 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>mc.alk</groupId>
         <artifactId>BattleBukkitLib-parent</artifactId>
+        <groupId>mc.alk</groupId>
         <version>parent</version>
-        <relativePath>../../</relativePath>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
+    <modelVersion>4.0.0</modelVersion>
     <groupId>mc.alk</groupId>
-    <artifactId>BattleBukkitLib-v1_12_R1</artifactId>
-    <version>v1_12_R1</version>
+    <artifactId>BattleBukkitLib-v1_11_R1</artifactId>
+    <version>v1_11_R1</version>
     <packaging>jar</packaging>
-    <name>BattleBukkitLib-v1_12_R1</name>
+    <name>BattleBukkitLib-v1_11_R1</name>
     <url>https://github.com/BattlePlugins/BattleBukkitLib</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -32,13 +32,13 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.12-R0.1-SNAPSHOT</version>
+            <version>1.11.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>craftbukkit</artifactId>
-            <version>1.12-R0.1</version>
+            <version>1.11.2-R0.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -48,7 +48,7 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>BattleBukkitLib-v1_12_R1</finalName>
+        <finalName>BattleBukkitLib-v1_11_R1</finalName>
         <directory>./target</directory>
         <sourceDirectory>./src/main/java</sourceDirectory>
         <plugins>
@@ -63,5 +63,4 @@
             </plugin>
         </plugins>
     </build>
-    
 </project>

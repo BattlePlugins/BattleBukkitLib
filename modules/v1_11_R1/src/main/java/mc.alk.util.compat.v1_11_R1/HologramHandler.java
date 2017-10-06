@@ -1,13 +1,13 @@
-package main.java.mc.alk.util.compat.v1_12_R1;
+package mc.alk.util.compat.v1_10_R1;
 
 import mc.alk.util.handlers.IHologramHandler;
 import mc.alk.util.objects.Hologram;
-import net.minecraft.server.v1_12_R1.*;
+import net.minecraft.server.v1_11_R1.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_11_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;

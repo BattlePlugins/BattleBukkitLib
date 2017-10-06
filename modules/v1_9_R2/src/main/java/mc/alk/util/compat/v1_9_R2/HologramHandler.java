@@ -1,4 +1,4 @@
-package main.java.mc.alk.util.compat.v1_9_R2;
+package mc.alk.util.compat.v1_9_R2;
 
 import mc.alk.util.handlers.IHologramHandler;
 import mc.alk.util.objects.Hologram;

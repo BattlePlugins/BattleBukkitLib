@@ -1,15 +1,15 @@
-package main.java.mc.alk.util.compat.v1_9_R2;
+package mc.alk.util.compat.v1_10_R1;
 
 import mc.alk.util.handlers.IParticleHandler;
-import net.minecraft.server.v1_12_R1.EnumParticle;
-import net.minecraft.server.v1_12_R1.PacketPlayOutWorldParticles;
+import net.minecraft.server.v1_11_R1.EnumParticle;
+import net.minecraft.server.v1_11_R1.PacketPlayOutWorldParticles;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 /**
- * For craftbukkit 1.12.x <br/><br/>
+ * For craftbukkit 1.11.x <br/><br/>
  * 
  * http://wiki.vg/Protocol#Particle
  */

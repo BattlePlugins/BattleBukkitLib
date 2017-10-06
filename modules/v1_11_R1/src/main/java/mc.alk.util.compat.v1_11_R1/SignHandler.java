@@ -1,20 +1,20 @@
-package main.java.mc.alk.util.compat.v1_9_R2;
+package mc.alk.util.compat.v1_11_R1;
 
 import mc.alk.util.fanciful.FancyMessage;
 import mc.alk.util.handlers.ISignHandler;
-import net.minecraft.server.v1_12_R1.BlockPosition;
-import net.minecraft.server.v1_12_R1.IChatBaseComponent;
-import net.minecraft.server.v1_12_R1.IChatBaseComponent.ChatSerializer;
-import net.minecraft.server.v1_12_R1.PacketPlayOutUpdateSign;
-import net.minecraft.server.v1_12_R1.World;
+import net.minecraft.server.v1_11_R1.BlockPosition;
+import net.minecraft.server.v1_11_R1.IChatBaseComponent;
+import net.minecraft.server.v1_11_R1.IChatBaseComponent.ChatSerializer;
+import net.minecraft.server.v1_11_R1.PacketPlayOutUpdateSign;
+import net.minecraft.server.v1_11_R1.World;
 import org.bukkit.Location;
 import org.bukkit.block.Sign;
-import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_11_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 /**
- * For craftbukkit 1.12.x
+ * For craftbukkit 1.11.x
  */
 public class SignHandler implements ISignHandler {
 

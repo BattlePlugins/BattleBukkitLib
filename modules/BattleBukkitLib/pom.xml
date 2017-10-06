@@ -191,6 +191,13 @@
             <type>jar</type>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>mc.alk</groupId>
+            <artifactId>BattleBukkitLib-v1_11_R1</artifactId>
+            <version>v1_11_R1</version>
+            <type>jar</type>
+            <optional>true</optional>
+        </dependency>
         <!-- unknown plugins that I had to add to the repo -->
     </dependencies>
     <!-- How we will compile the plugin -->

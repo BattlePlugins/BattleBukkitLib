@@ -1,4 +1,4 @@
-package main.java.mc.alk.util.compat.v1_9_R2;
+package mc.alk.util.compat.v1_9_R2;
 
 import mc.alk.util.fanciful.FancyMessage;
 import mc.alk.util.handlers.ISignHandler;
@@ -14,7 +14,7 @@ import org.bukkit.craftbukkit.v1_9_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 /**
- * For craftbukkit 1.8.7
+ * For craftbukkit 1.9.4
  */
 public class SignHandler implements ISignHandler {
 

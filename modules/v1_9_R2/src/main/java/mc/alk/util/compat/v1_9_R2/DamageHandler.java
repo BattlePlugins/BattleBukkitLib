@@ -1,4 +1,4 @@
-package main.java.mc.alk.util.compat.v1_9_R2;
+package mc.alk.util.compat.v1_9_R2;
 
 import mc.alk.util.handlers.IDamageHandler;
 import net.minecraft.server.v1_9_R2.DamageSource;
