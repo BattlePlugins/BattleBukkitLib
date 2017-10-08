@@ -10,8 +10,8 @@
     </parent>
     <groupId>mc.alk</groupId>
     <artifactId>BattleBukkitLib</artifactId>
-    <version>2.4.1</version>
-    <packaging>jar</packaging>
+    <version>2.5.0</version>
+    <packaging>pom</packaging>
     <name>BattleBukkitLib</name>
     <url>https://github.com/BattlePlugins/BattleBukkitLib</url>
     <properties>
@@ -21,7 +21,7 @@
     <repositories>
         <repository>
             <id>bukkit-repo</id>
-            <url>http://repo.bukkit.org/content/groups/public</url>
+            <url>https://repo.md-5.net/content/groups/public</url>
         </repository>
         <repository>
             <id>rainbowcraft-repo</id>
@@ -174,6 +174,34 @@
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_9_R1</artifactId>
             <version>v1_9_R1</version>
+            <type>jar</type>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>mc.alk</groupId>
+            <artifactId>BattleBukkitLib-v1_9_R2</artifactId>
+            <version>v1_9_R2</version>
+            <type>jar</type>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>mc.alk</groupId>
+            <artifactId>BattleBukkitLib-v1_10_R1</artifactId>
+            <version>v1_10_R1</version>
+            <type>jar</type>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>mc.alk</groupId>
+            <artifactId>BattleBukkitLib-v1_11_R1</artifactId>
+            <version>v1_11_R1</version>
+            <type>jar</type>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>mc.alk</groupId>
+            <artifactId>BattleBukkitLib-v1_12_R1</artifactId>
+            <version>v1_12_R1</version>
             <type>jar</type>
             <optional>true</optional>
         </dependency>

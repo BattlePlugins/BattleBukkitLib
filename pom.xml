@@ -32,13 +32,21 @@
     <module>modules/v1_8_R2</module>
     <module>modules/v1_8_R3</module>
     <module>modules/v1_9_R1</module>
+    <module>modules/v1_9_R2</module>
+    <module>modules/v1_10_R1</module>
+    <module>modules/v1_11_R1</module>
+    <module>modules/v1_12_R1</module>
     <module>modules/BattleBukkitLib</module>
   </modules>
   <!-- Locations for jar repositories -->
   <repositories>
     <repository>
       <id>bukkit-repo</id>
-      <url>http://repo.bukkit.org/content/groups/public</url>
+      <url>https://repo.md-5.net/content/groups/public</url>
+    </repository>
+    <repository>
+      <id>spigot-repo</id>
+      <url>https://hub.spigotmc.org/nexus/content/groups/public</url>
     </repository>
   </repositories>
   <!-- Dependency jars -->

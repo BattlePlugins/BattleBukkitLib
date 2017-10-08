@@ -21,7 +21,7 @@
     <repositories>
         <repository>
             <id>bukkit-repo</id>
-            <url>http://repo.bukkit.org/content/groups/public</url>
+            <url>https://repo.md-5.net/content/repositories/repobo-rel</url>
         </repository>
         <repository>
             <id>rainbowcraft-repo</id>
