@@ -1,11 +1,11 @@
-package mc.alk.util.compat.v1_10_R1;
+package mc.alk.util.compat.v1_12_R1;
 
 import mc.alk.util.handlers.ISignHandler;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 
 /**
- * For craftbukkit 1.10.x
+ * For craftbukkit 1.12.x
  */
 public class SignHandler implements ISignHandler {
 
