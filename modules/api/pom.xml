@@ -49,10 +49,15 @@
         </dependency>
         <dependency>
             <groupId>mc.euro</groupId>
-            <!-- <artifactId>Version</artifactId> -->
+            <artifactId>Version</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>mc.euro</groupId>
             <artifactId>BukkitInterface</artifactId>
-            <version>4.0.0</version>
-            <scope>compile</scope>
+            <version>4.0.1</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>mkremins</groupId>
@@ -93,10 +98,6 @@
                         <configuration>
                             <relocations>
                                 <relocation>
-                                    <pattern>mc.euro</pattern>
-                                    <shadedPattern>mc.alk.util</shadedPattern>
-                                </relocation>
-                                <relocation>
                                     <pattern>mkremins.fanciful</pattern>
                                     <shadedPattern>mc.alk.util.fanciful</shadedPattern>
                                 </relocation>
@@ -107,7 +108,6 @@
                             </relocations>
                             <artifactSet>
                                 <includes>
-                                    <include>mc.euro:BukkitInterface</include>
                                     <include>mkremins:fanciful</include>
                                 </includes>
                             </artifactSet>

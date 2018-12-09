@@ -1,6 +1,6 @@
 package mc.alk.util.factory;
 
-import mc.alk.util.version.VersionFactory;
+import mc.euro.version.VersionFactory;
 
 public class HandlerFactory<T> {
 

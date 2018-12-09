@@ -10,7 +10,7 @@
     </parent>
     <groupId>mc.alk</groupId>
     <artifactId>BattleBukkitLib</artifactId>
-    <version>2.6.0</version>
+    <version>4.0.1</version>
     <packaging>jar</packaging>
     <name>BattleBukkitLib</name>
     <url>https://github.com/BattlePlugins/BattleBukkitLib</url>
@@ -47,6 +47,18 @@
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
             <version>1.5-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>mc.euro</groupId>
+            <artifactId>Version</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>mc.euro</groupId>
+            <artifactId>BukkitInterface</artifactId>
+            <version>4.0.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

@@ -1,8 +1,8 @@
 package mc.alk.util;
 
 import mc.alk.util.factory.ParticleHandlerFactory;
-import mc.alk.util.handlers.IParticleHandler;
-import mc.alk.util.handlers.IParticleHandler.ParticleEffects;
+import mc.alk.battlebukkitlib.handlers.IParticleHandler;
+import mc.alk.battlebukkitlib.handlers.IParticleHandler.ParticleEffects;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;

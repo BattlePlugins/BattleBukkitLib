@@ -1,7 +1,7 @@
 package mc.alk.util;
 
 import mc.alk.util.factory.SignHandlerFactory;
-import mc.alk.util.handlers.ISignHandler;
+import mc.alk.battlebukkitlib.handlers.ISignHandler;
 
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;

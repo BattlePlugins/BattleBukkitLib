@@ -1,7 +1,7 @@
 package mc.alk.util;
 
 import mc.alk.util.factory.DamageHandlerFactory;
-import mc.alk.util.handlers.IDamageHandler;
+import mc.alk.battlebukkitlib.handlers.IDamageHandler;
 
 import org.bukkit.entity.Player;
 

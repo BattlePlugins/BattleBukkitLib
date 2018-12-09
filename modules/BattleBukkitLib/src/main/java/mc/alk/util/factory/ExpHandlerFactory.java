@@ -1,6 +1,6 @@
 package mc.alk.util.factory;
 
-import mc.alk.util.handlers.IExpHandler;
+import mc.alk.battlebukkitlib.handlers.IExpHandler;
 
 /**
  * 

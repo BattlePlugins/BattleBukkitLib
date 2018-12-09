@@ -1,8 +1,8 @@
 package mc.alk.util;
 
 import mc.alk.util.factory.HologramHandlerFactory;
-import mc.alk.util.handlers.IHologramHandler;
-import mc.alk.util.objects.Hologram;
+import mc.alk.battlebukkitlib.handlers.IHologramHandler;
+import mc.alk.battlebukkitlib.objects.Hologram;
 
 import org.bukkit.Location;
 

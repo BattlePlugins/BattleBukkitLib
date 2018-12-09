@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import mc.alk.util.factory.InventoryHandlerFactory;
-import mc.alk.util.handlers.IInventoryHandler;
+import mc.alk.battlebukkitlib.handlers.IInventoryHandler;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;

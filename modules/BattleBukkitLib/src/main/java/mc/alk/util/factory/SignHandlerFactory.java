@@ -1,6 +1,6 @@
 package mc.alk.util.factory;
 
-import mc.alk.util.handlers.ISignHandler;
+import mc.alk.battlebukkitlib.handlers.ISignHandler;
 
 public class SignHandlerFactory {
 

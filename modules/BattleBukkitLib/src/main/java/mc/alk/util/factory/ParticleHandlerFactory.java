@@ -1,6 +1,6 @@
 package mc.alk.util.factory;
 
-import mc.alk.util.handlers.IParticleHandler;
+import mc.alk.battlebukkitlib.handlers.IParticleHandler;
 
 public class ParticleHandlerFactory {
 

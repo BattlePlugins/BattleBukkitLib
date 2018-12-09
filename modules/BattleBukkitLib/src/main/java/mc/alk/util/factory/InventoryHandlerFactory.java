@@ -1,8 +1,8 @@
 package mc.alk.util.factory;
 
-import mc.alk.util.handlers.IInventoryHandler;
-import mc.alk.util.version.Version;
-import mc.alk.util.version.VersionFactory;
+import mc.alk.battlebukkitlib.handlers.IInventoryHandler;
+import mc.euro.version.Version;
+import mc.euro.version.VersionFactory;
 
 import org.bukkit.Server;
 
