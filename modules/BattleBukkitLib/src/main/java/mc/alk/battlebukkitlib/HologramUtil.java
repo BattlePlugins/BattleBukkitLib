@@ -1,6 +1,6 @@
-package mc.alk.util;
+package mc.alk.battlebukkitlib;
 
-import mc.alk.util.factory.HologramHandlerFactory;
+import mc.alk.battlebukkitlib.factory.HologramHandlerFactory;
 import mc.alk.battlebukkitlib.handlers.IHologramHandler;
 import mc.alk.battlebukkitlib.objects.Hologram;
 

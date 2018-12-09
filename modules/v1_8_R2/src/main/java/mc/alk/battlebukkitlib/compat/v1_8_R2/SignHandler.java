@@ -1,6 +1,6 @@
 package mc.alk.battlebukkitlib.compat.v1_8_R2;
 
-import mc.alk.util.fanciful.FancyMessage;
+import mc.alk.battlebukkitlib.fanciful.FancyMessage;
 import mc.alk.battlebukkitlib.handlers.ISignHandler;
 
 import net.minecraft.server.v1_8_R2.BlockPosition;

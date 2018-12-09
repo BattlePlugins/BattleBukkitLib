@@ -99,11 +99,11 @@
                             <relocations>
                                 <relocation>
                                     <pattern>mkremins.fanciful</pattern>
-                                    <shadedPattern>mc.alk.util.fanciful</shadedPattern>
+                                    <shadedPattern>mc.alk.battlebukkitlib.fanciful</shadedPattern>
                                 </relocation>
                                 <relocation>
                                     <pattern>net.amoebaman.util</pattern>
-                                    <shadedPattern>mc.alk.util.fanciful.amoebaman</shadedPattern>
+                                    <shadedPattern>mc.alk.battlebukkitlib.fanciful.amoebaman</shadedPattern>
                                 </relocation>
                             </relocations>
                             <artifactSet>

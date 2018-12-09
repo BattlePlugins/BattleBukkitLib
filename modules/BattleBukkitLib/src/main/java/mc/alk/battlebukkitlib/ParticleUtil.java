@@ -1,6 +1,6 @@
-package mc.alk.util;
+package mc.alk.battlebukkitlib;
 
-import mc.alk.util.factory.ParticleHandlerFactory;
+import mc.alk.battlebukkitlib.factory.ParticleHandlerFactory;
 import mc.alk.battlebukkitlib.handlers.IParticleHandler;
 import mc.alk.battlebukkitlib.handlers.IParticleHandler.ParticleEffects;
 

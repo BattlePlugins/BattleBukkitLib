@@ -1,4 +1,4 @@
-package mc.alk.util;
+package mc.alk.battlebukkitlib;
 
 
 import java.awt.*;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import mc.alk.util.factory.InventoryHandlerFactory;
+import mc.alk.battlebukkitlib.factory.InventoryHandlerFactory;
 import mc.alk.battlebukkitlib.handlers.IInventoryHandler;
 
 import org.bukkit.Material;

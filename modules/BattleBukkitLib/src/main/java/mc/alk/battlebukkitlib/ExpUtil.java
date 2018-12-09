@@ -1,4 +1,4 @@
-package mc.alk.util;
+package mc.alk.battlebukkitlib;
 
 /**
  * 

@@ -1,4 +1,4 @@
-package mc.alk.util.factory;
+package mc.alk.battlebukkitlib.factory;
 
 import mc.alk.battlebukkitlib.handlers.IInventoryHandler;
 import mc.euro.version.Version;
