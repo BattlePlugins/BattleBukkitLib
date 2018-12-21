@@ -2,12 +2,6 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>mc.alk</groupId>
-        <artifactId>BattleBukkitLib-parent</artifactId>
-        <version>parent</version>
-        <relativePath>../../</relativePath>
-    </parent>
     <groupId>mc.alk</groupId>
     <artifactId>BattleBukkitLib</artifactId>
     <version>4.0.2</version>
@@ -15,226 +9,244 @@
     <name>BattleBukkitLib</name>
     <url>https://github.com/BattlePlugins/BattleBukkitLib</url>
     <properties>
+        <maven.build.timestamp.format>yyyy_MM_dd</maven.build.timestamp.format>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <doclint>none</doclint>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.version>3.8.0</maven.compiler.version>
+        <maven.jar.version>3.1.1</maven.jar.version>
+        <maven.shade.version>3.2.1</maven.shade.version>
+        <maven.deploy.version>2.8.2</maven.deploy.version>
+        <maven.javadoc.version>3.0.1</maven.javadoc.version>
     </properties>
-    <!-- Locations for jar repositories -->
     <repositories>
-        <repository>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/groups/public</url>
-        </repository>
-        <repository>
-            <id>bukkit-repo</id>
-            <url>https://repo.md-5.net/content/repositories/repobo-rel</url>
-        </repository>
-        <repository>
-            <id>md5-repo</id>
-            <url>https://repo.md-5.net/content/groups/public</url>
-        </repository>
         <repository>
             <id>rainbowcraft-repo</id>
             <url>http://rainbowcraft.sytes.net/maven/repository/</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </snapshots>
+        </repository>
+        <repository>
+            <id>spigot-public</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/public/</url>
+        </repository>
+        <repository>
+            <id>bukkit-public</id>
+            <url>https://repo.md-5.net/content/repositories/public/</url>
+        </repository>
+        <repository>
+            <id>sk89q-repo</id>
+            <url>http://maven.sk89q.com/repo/</url>
+        </repository>
+        <repository>
+            <id>vault-repo</id>
+            <url>http://nexus.hc.to/content/repositories/pub_releases/</url>
+        </repository>
+        <repository>
+            <id>dmulloy2-repo</id>
+            <url>http://repo.dmulloy2.net/nexus/repository/public/</url>
         </repository>
     </repositories>
-    <!-- Dependency jars -->
     <dependencies>
-        <!-- plugins that have their own maven repos -->
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
             <version>1.5-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.euro</groupId>
             <artifactId>Version</artifactId>
             <version>4.0.1</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
+            <optional>false</optional>
         </dependency>
         <dependency>
             <groupId>mc.euro</groupId>
             <artifactId>BukkitInterface</artifactId>
             <version>4.0.1</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
+            <optional>false</optional>
+        </dependency>
+        <dependency>
+            <groupId>mc.alk</groupId>
+            <artifactId>BattleBukkitLib-api</artifactId>
+            <version>api</version>
+            <scope>compile</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_2_5</artifactId>
             <version>v1_2_5</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_3_2</artifactId>
             <version>v1_3_2</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_4_2</artifactId>
             <version>v1_4_2</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_4_5</artifactId>
             <version>v1_4_5</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_4_6</artifactId>
             <version>v1_4_6</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_4_R1</artifactId>
             <version>v1_4_R1</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_5_R1</artifactId>
             <version>v1_5_R1</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_5_R2</artifactId>
             <version>v1_5_R2</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_5_R3</artifactId>
             <version>v1_5_R3</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_6_R1</artifactId>
             <version>v1_6_R1</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_6_R2</artifactId>
             <version>v1_6_R2</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_6_R3</artifactId>
             <version>v1_6_R3</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_7_R1</artifactId>
             <version>v1_7_R1</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_7_R2</artifactId>
             <version>v1_7_R2</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_7_R3</artifactId>
             <version>v1_7_R3</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_7_R4</artifactId>
             <version>v1_7_R4</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_8_R1</artifactId>
             <version>v1_8_R1</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_8_R2</artifactId>
             <version>v1_8_R2</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_8_R3</artifactId>
             <version>v1_8_R3</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_9_R1</artifactId>
             <version>v1_9_R1</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_9_R2</artifactId>
             <version>v1_9_R2</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_10_R1</artifactId>
             <version>v1_10_R1</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_11_R1</artifactId>
             <version>v1_11_R1</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_12_R1</artifactId>
             <version>v1_12_R1</version>
-            <type>jar</type>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
-        <!-- unknown plugins that I had to add to the repo -->
     </dependencies>
-    <!-- How we will compile the plugin -->
     <build>
         <finalName>BattleBukkitLib</finalName>
-        <directory>../../target</directory>
+        <directory>./target</directory>
         <sourceDirectory>./src/main/java</sourceDirectory>
         <defaultGoal>install</defaultGoal>
         <extensions>
@@ -253,18 +265,43 @@
                 </excludes>
             </resource>
         </resources>
-        <!-- Specify how we build the plugin.jar -->
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.1.0</version>
+                <groupId>com.mycila.maven-license-plugin</groupId>
+                <artifactId>maven-license-plugin</artifactId>
+                <version>1.10.b1</version>
+                <executions>
+                    <execution>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>format</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <quiet>true</quiet>
+                    <encoding>UTF-8</encoding>
+                    <strictCheck>true</strictCheck>
+                    <!-- <header>${basedir}/TagAPI-LICENSE</header> -->
+                    <mapping>
+                        <java>SLASHSTAR_STYLE</java>
+                    </mapping>
+                    <includes>
+                        <include>src/mc/**</include>
+                    </includes>
+                    <excludes>
+                        <exclude>src/test/**</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
+                <version>${maven.compiler.version}</version>
                 <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <!-- Only needed if you jam all source code in one directory -->
                     <excludes>
                         <exclude>mc/alk/util/compat/**</exclude>
                         <exclude>mc/alk/util/handlers/**</exclude>
@@ -274,8 +311,13 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven.jar.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.1</version>
+                <version>${maven.shade.version}</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -295,18 +337,18 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>${maven.javadoc.version}</version>
                 <configuration>
                     <excludePackageNames>mc.alk.util.compat.*:mc.alk.util.handlers.*</excludePackageNames>
                     <links>
-                        <link>http://jd.bukkit.org/dev/apidocs/</link>
+                        <link>https://hub.spigotmc.org/javadocs/bukkit/index.html?overview-summary.html</link>
                     </links>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.8.2</version>
+                <version>${maven.deploy.version}</version>
                 <configuration>
                     <skip>false</skip>
                 </configuration>

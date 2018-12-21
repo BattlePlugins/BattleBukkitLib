@@ -13,49 +13,27 @@
     <version>v1_7_R1</version>
     <packaging>jar</packaging>
     <name>BattleBukkitLib-v1_7_R1</name>
-    <url>https://github.com/BattlePlugins/BattleBukkitLib</url>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-    <repositories>
-        <repository>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/groups/public</url>
-        </repository>
-        <repository>
-            <id>bukkit-repo</id>
-            <url>https://repo.md-5.net/content/repositories/repobo-rel</url>
-        </repository>
-        <repository>
-            <id>md5-repo</id>
-            <url>https://repo.md-5.net/content/groups/public</url>
-        </repository>
-        <repository>
-            <id>rainbowcraft-repo</id>
-            <url>http://rainbowcraft.sytes.net/maven/repository/</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
     <dependencies>
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
             <version>1.7.2-R0.3</version>
             <scope>provided</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>craftbukkit</artifactId>
             <version>1.7.2-R0.3</version>
             <scope>provided</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-api</artifactId>
             <version>api</version>
+            <scope>compile</scope>
+            <optional>true</optional>
         </dependency>
     </dependencies>
     <build>
@@ -66,10 +44,18 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
+                <version>${maven.compiler.version}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${maven.deploy.version}</version>
+                <configuration>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
         </plugins>

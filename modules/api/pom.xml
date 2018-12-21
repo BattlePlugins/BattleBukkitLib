@@ -13,62 +13,34 @@
     <version>api</version>
     <packaging>jar</packaging>
     <name>BattleBukkitLib-api</name>
-    <url>https://github.com/BattlePlugins/BattleBukkitLib</url>
-    <properties>
-        <maven.build.timestamp.format>MMdd</maven.build.timestamp.format>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-    <repositories>
-        <repository>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/groups/public</url>
-        </repository>
-        <repository>
-            <id>bukkit-repo</id>
-            <url>https://repo.md-5.net/content/repositories/repobo-rel</url>
-        </repository>
-        <repository>
-            <id>md5-repo</id>
-            <url>https://repo.md-5.net/content/groups/public</url>
-        </repository>
-        <repository>
-            <id>rainbowcraft-repo</id>
-            <url>http://rainbowcraft.sytes.net/maven/repository/</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
     <dependencies>
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
             <version>1.5.1-R0.1</version>
             <scope>provided</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>mc.euro</groupId>
             <artifactId>Version</artifactId>
             <version>4.0.1</version>
             <scope>provided</scope>
+            <optional>false</optional>
         </dependency>
         <dependency>
             <groupId>mc.euro</groupId>
             <artifactId>BukkitInterface</artifactId>
             <version>4.0.1</version>
             <scope>provided</scope>
+            <optional>false</optional>
         </dependency>
         <dependency>
             <groupId>mkremins</groupId>
             <artifactId>fanciful</artifactId>
             <version>0.3.3-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
+            <scope>provided</scope>
+            <optional>true</optional>
         </dependency>
     </dependencies>
     <build>
@@ -79,16 +51,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
+                <version>${maven.compiler.version}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.1</version>
+                <version>${maven.shade.version}</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -115,6 +87,14 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${maven.deploy.version}</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
             </plugin>
         </plugins>
     </build>

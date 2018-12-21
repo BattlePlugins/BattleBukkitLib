@@ -3,13 +3,22 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>mc.alk</groupId>
     <artifactId>BattleBukkitLib-parent</artifactId>
-    <packaging>pom</packaging>
     <version>parent</version>
+    <packaging>pom</packaging>
     <name>BattleBukkitLib-parent</name>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
     <url>https://github.com/BattlePlugins/BattleBukkitLib</url>
+    <properties>
+        <maven.build.timestamp.format>yyyy_MM_dd</maven.build.timestamp.format>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <doclint>none</doclint>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.version>3.8.0</maven.compiler.version>
+        <maven.jar.version>3.1.1</maven.jar.version>
+        <maven.shade.version>3.2.1</maven.shade.version>
+        <maven.deploy.version>2.8.2</maven.deploy.version>
+        <maven.javadoc.version>3.0.1</maven.javadoc.version>
+    </properties>
     <modules>
         <module>modules/api</module>
         <module>modules/v1_2_5</module>
@@ -38,69 +47,71 @@
         <module>modules/v1_12_R1</module>
         <module>modules/BattleBukkitLib</module>
     </modules>
-    <!-- Locations for jar repositories -->
     <repositories>
-        <repository>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/groups/public</url>
-        </repository>
-        <repository>
-            <id>bukkit-repo</id>
-            <url>https://repo.md-5.net/content/repositories/repobo-rel</url>
-        </repository>
-        <repository>
-            <id>md5-repo</id>
-            <url>https://repo.md-5.net/content/groups/public</url>
-        </repository>
         <repository>
             <id>rainbowcraft-repo</id>
             <url>http://rainbowcraft.sytes.net/maven/repository/</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </snapshots>
+        </repository>
+        <repository>
+            <id>spigot-public</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/public/</url>
+        </repository>
+        <repository>
+            <id>bukkit-public</id>
+            <url>https://repo.md-5.net/content/repositories/public/</url>
+        </repository>
+        <repository>
+            <id>sk89q-repo</id>
+            <url>http://maven.sk89q.com/repo/</url>
+        </repository>
+        <repository>
+            <id>vault-repo</id>
+            <url>http://nexus.hc.to/content/repositories/pub_releases/</url>
+        </repository>
+        <repository>
+            <id>dmulloy2-repo</id>
+            <url>http://repo.dmulloy2.net/nexus/repository/public/</url>
         </repository>
     </repositories>
-    <!-- Dependency jars -->
-    <dependencies>
-        <dependency>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
-    </dependencies>
-    <!-- How we will compile the plugin -->
+        </dependencies>
+    </dependencyManagement>
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.compiler.version}</version>
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
-                <groupId>com.mycila.maven-license-plugin</groupId>
-                <artifactId>maven-license-plugin</artifactId>
-                <version>1.10.b1</version>
-                <executions>
-                    <execution>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>format</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
                 <configuration>
-                    <quiet>true</quiet>
-                    <encoding>UTF-8</encoding>
-                    <strictCheck>true</strictCheck>
-                    <!-- <header>${basedir}/TagAPI-LICENSE</header> -->
-                    <mapping>
-                        <java>SLASHSTAR_STYLE</java>
-                    </mapping>
-                    <includes>
-                        <include>src/mc/**</include>
-                    </includes>
-                    <excludes>
-                        <exclude>src/test/**</exclude>
-                    </excludes>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+    <distributionManagement>
+      <repository>
+        <id>rainbowcraft-repo</id>
+        <url>scp://rainbowcraft.sytes.net/var/www/maven/repository</url>
+      </repository>
+    </distributionManagement>
 </project>
