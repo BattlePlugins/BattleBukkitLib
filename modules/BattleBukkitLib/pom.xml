@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>mc.alk</groupId>
     <artifactId>BattleBukkitLib</artifactId>
-    <version>4.0.2</version>
+    <version>4.1.0</version>
     <packaging>jar</packaging>
     <name>BattleBukkitLib</name>
     <url>https://github.com/BattlePlugins/BattleBukkitLib</url>
@@ -240,6 +240,20 @@
             <groupId>mc.alk</groupId>
             <artifactId>BattleBukkitLib-v1_12_R1</artifactId>
             <version>v1_12_R1</version>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>mc.alk</groupId>
+            <artifactId>BattleBukkitLib-v1_13_R1</artifactId>
+            <version>v1_13_R1</version>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>mc.alk</groupId>
+            <artifactId>BattleBukkitLib-v1_13_R2</artifactId>
+            <version>v1_13_R2</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
