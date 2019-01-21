@@ -12,6 +12,8 @@ import java.util.logging.Logger;
 import mc.alk.battlebukkitlib.factory.InventoryHandlerFactory;
 import mc.alk.battlebukkitlib.handlers.IInventoryHandler;
 
+import mc.euro.bukkitadapter.EnchantAdapter;
+import mc.euro.bukkitadapter.MaterialAdapter;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -137,12 +139,12 @@ public class InventoryUtil {
 
     static {
         armor = new HashMap<Material, Armor>();
-        armor.put(Material.WOOL, new Armor(ArmorType.HELM, ArmorLevel.WOOL));
+        armor.put(MaterialAdapter.getMaterial("WOOL"), new Armor(ArmorType.HELM, ArmorLevel.WOOL));
         armor.put(Material.LEATHER_HELMET, new Armor(ArmorType.HELM,
                 ArmorLevel.LEATHER));
         armor.put(Material.IRON_HELMET, new Armor(ArmorType.HELM,
                 ArmorLevel.IRON));
-        armor.put(Material.GOLD_HELMET, new Armor(ArmorType.HELM,
+        armor.put(MaterialAdapter.getMaterial("GOLD_HELMET"), new Armor(ArmorType.HELM,
                 ArmorLevel.GOLD));
         armor.put(Material.DIAMOND_HELMET, new Armor(ArmorType.HELM,
                 ArmorLevel.DIAMOND));
@@ -153,7 +155,7 @@ public class InventoryUtil {
                 ArmorLevel.LEATHER));
         armor.put(Material.IRON_CHESTPLATE, new Armor(ArmorType.CHEST,
                 ArmorLevel.IRON));
-        armor.put(Material.GOLD_CHESTPLATE, new Armor(ArmorType.CHEST,
+        armor.put(MaterialAdapter.getMaterial("GOLD_CHESTPLATE"), new Armor(ArmorType.CHEST,
                 ArmorLevel.GOLD));
         armor.put(Material.DIAMOND_CHESTPLATE, new Armor(ArmorType.CHEST,
                 ArmorLevel.DIAMOND));
@@ -164,7 +166,7 @@ public class InventoryUtil {
                 ArmorLevel.LEATHER));
         armor.put(Material.IRON_LEGGINGS, new Armor(ArmorType.LEGGINGS,
                 ArmorLevel.IRON));
-        armor.put(Material.GOLD_LEGGINGS, new Armor(ArmorType.LEGGINGS,
+        armor.put(MaterialAdapter.getMaterial("GOLD_LEGGINGS"), new Armor(ArmorType.LEGGINGS,
                 ArmorLevel.GOLD));
         armor.put(Material.DIAMOND_LEGGINGS, new Armor(ArmorType.LEGGINGS,
                 ArmorLevel.DIAMOND));
@@ -175,7 +177,7 @@ public class InventoryUtil {
                 ArmorLevel.LEATHER));
         armor.put(Material.IRON_BOOTS, new Armor(ArmorType.BOOTS,
                 ArmorLevel.IRON));
-        armor.put(Material.GOLD_BOOTS, new Armor(ArmorType.BOOTS,
+        armor.put(MaterialAdapter.getMaterial("GOLD_BOOTS"), new Armor(ArmorType.BOOTS,
                 ArmorLevel.GOLD));
         armor.put(Material.DIAMOND_BOOTS, new Armor(ArmorType.BOOTS,
                 ArmorLevel.DIAMOND));
@@ -309,26 +311,25 @@ public class InventoryUtil {
 
     // / Get the Material
     public static Material getMat(String name) {
-        Integer id = null;
-        try {
+        Integer id =null;
+        try{
             id = Integer.parseInt(name);
-        } catch (Exception e) {
-        }
-        if (id == null) {
+        }catch(Exception e){/* do nothing*/}
+        if (id == null){
             id = getMaterialID(name);
         }
-        return id != null && id >= 0 ? Material.getMaterial(id) : null;
+        return id != -1 && id >= 0 ? MaterialAdapter.getMaterial(name) : null;
     }
 
     // / This allows for abbreviations to work, useful for sign etc
+    /// This allows for abbreviations to work, useful for sign etc
     public static int getMaterialID(String name) {
         name = name.toUpperCase();
-        // / First try just getting it from the Material Name
-        Material mat = Material.getMaterial(name);
-        if (mat != null) {
+        /// First try just getting it from the Material Name
+        Material mat = MaterialAdapter.getMaterial(name);
+        if (mat != null)
             return mat.getId();
-        }
-        // / Might be an abbreviation, or a more complicated
+        /// Might be an abbreviation, or a more complicated
         int temp = Integer.MAX_VALUE;
         mat = null;
         name = name.replaceAll("\\s+", "").replaceAll("_", "");
@@ -551,12 +552,12 @@ public class InventoryUtil {
     }
 
     public static String getCommonName(ItemStack is) {
-        int id = is.getTypeId();
+        Material mat = is.getType();
         int datavalue = is.getDurability();
         if (datavalue > 0) {
-            return Material.getMaterial(id).toString() + ":" + datavalue;
+            return mat.toString() + ":" + datavalue;
         }
-        return Material.getMaterial(id).toString();
+        return mat.toString();
     }
 
     public static String getCustomName(ItemStack item) {
@@ -623,7 +624,7 @@ public class InventoryUtil {
 
         // System.out.println("String = <" + str +">   " + lvl);
         try {
-            e = Enchantment.getById(Integer.valueOf(str));
+            e = EnchantAdapter.getEnchantment(str);
         } catch (Exception err) {
         }
         if (e == null) {
@@ -747,7 +748,7 @@ public class InventoryUtil {
             if (is2 == null) {
                 continue;
             }
-            if (is1.getTypeId() == is2.getTypeId()
+            if (is1.getType() == is2.getType()
                     && is1.getDurability() == is2.getDurability()) {
                 return i;
             }
