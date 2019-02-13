@@ -16,9 +16,9 @@ public class InventoryHandlerFactory {
         try {
             Class<?>[] args = {};
             if (server.isGreaterThanOrEqualTo("1.4.5")) {
-                clazz = Class.forName("mc.alk.util.compat.v1_4_5.InventoryHandler");
+                clazz = Class.forName("mc.alk.battlebukkitlib.compat.v1_4_5.InventoryHandler");
             } else if (server.isLessThan("1.4.5")) {
-                clazz = Class.forName("mc.alk.util.compat.v1_4_2.InventoryHandler");
+                clazz = Class.forName("mc.alk.battlebukkitlib.compat.v1_4_2.InventoryHandler");
             }
             handler = (IInventoryHandler) clazz.getConstructor(args).newInstance((Object[]) args);
         } catch (Exception ex) {
