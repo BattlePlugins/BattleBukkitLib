@@ -18,14 +18,14 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.13-R0.1-SNAPSHOT</version>
+            <version>1.13.0-R0.1</version>
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>craftbukkit</artifactId>
-            <version>1.13-R0.1</version>
+            <version>1.13.0-R0.1</version>
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
