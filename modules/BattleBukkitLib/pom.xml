@@ -264,6 +264,13 @@
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>mc.alk</groupId>
+            <artifactId>BattleBukkitLib-v1_14_R1</artifactId>
+            <version>v1_14_R1</version>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
     <build>
         <finalName>BattleBukkitLib</finalName>
