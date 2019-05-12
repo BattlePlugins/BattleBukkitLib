@@ -10,7 +10,7 @@ public class HandlerFactory<T> {
         Class clazz = null;
         Class<?>[] args = {};
         try {
-            clazz = Class.forName("mc.alk.util.battlebukkitlib." + version + "." + handlerName);
+            clazz = Class.forName("mc.alk.battlebukkitlib.compat." + version + "." + handlerName);
             object = clazz.getConstructor(args).newInstance((Object[]) args);
         } catch (Exception ex) {
             ex.printStackTrace();
