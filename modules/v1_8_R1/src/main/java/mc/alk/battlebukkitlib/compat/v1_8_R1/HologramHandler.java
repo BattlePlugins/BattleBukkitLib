@@ -5,10 +5,8 @@ import java.util.List;
 
 import mc.alk.battlebukkitlib.handlers.IHologramHandler;
 import mc.alk.battlebukkitlib.objects.Hologram;
-import net.minecraft.server.v1_8_R1.EntityHorse;
+import net.minecraft.server.v1_8_R1.EntityArmorStand;
 import net.minecraft.server.v1_8_R1.EntityPlayer;
-import net.minecraft.server.v1_8_R1.EntityWitherSkull;
-import net.minecraft.server.v1_8_R1.PacketPlayOutAttachEntity;
 import net.minecraft.server.v1_8_R1.PacketPlayOutEntityDestroy;
 import net.minecraft.server.v1_8_R1.PacketPlayOutSpawnEntityLiving;
 import net.minecraft.server.v1_8_R1.WorldServer;
@@ -40,26 +38,17 @@ public class HologramHandler implements IHologramHandler {
     @Override
     public List<Integer> showLine(Location location, String text) {
         WorldServer world = ((CraftWorld) location.getWorld()).getHandle();
-        EntityWitherSkull skull = new EntityWitherSkull(world);
-        skull.setLocation(location.getX(), location.getY() + 1 + 55,
-                location.getZ(), 0, 0);
-        ((CraftWorld) location.getWorld()).getHandle().addEntity(skull);
-        EntityHorse horse = new EntityHorse(world);
-        horse.setLocation(location.getX(), location.getY() + 55,
-                location.getZ(), 0, 0);
-        horse.setAge(-1700000);
-        horse.setCustomName(ChatColor.translateAlternateColorCodes('&', text));
-        horse.setCustomNameVisible(true);
-        PacketPlayOutSpawnEntityLiving packedt = new PacketPlayOutSpawnEntityLiving(
-                horse);
+        EntityArmorStand stand = new EntityArmorStand(world);
+        stand.setLocation(location.getX(), location.getY(), location.getZ(), 0, 0);
+        stand.setCustomName(ChatColor.translateAlternateColorCodes('&', text));
+        stand.setCustomNameVisible(true);
+        PacketPlayOutSpawnEntityLiving packedt = new PacketPlayOutSpawnEntityLiving(stand);
         for (Player player : Bukkit.getServer().getOnlinePlayers()) {
             EntityPlayer nmsPlayer = ((CraftPlayer) player).getHandle();
             nmsPlayer.playerConnection.sendPacket(packedt);
-            PacketPlayOutAttachEntity pa = new PacketPlayOutAttachEntity(0,
-                    horse, skull);
-            nmsPlayer.playerConnection.sendPacket(pa);
+
         }
-        return Arrays.asList(skull.getId(), horse.getId());
+        return Arrays.asList(stand.getId());
     }
 
 }
