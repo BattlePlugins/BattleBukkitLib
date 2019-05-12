@@ -1,10 +1,7 @@
 package mc.alk.battlebukkitlib.compat.v1_7_R4;
 
 import mc.alk.battlebukkitlib.handlers.ISignHandler;
-import net.minecraft.server.v1_7_R4.PacketPlayOutUpdateSign;
-import org.bukkit.Location;
 import org.bukkit.block.Sign;
-import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 /**
@@ -14,11 +11,7 @@ public class SignHandler implements ISignHandler {
 
     @Override
     public void sendLines(Player player, Sign sign, String[] lines) {
-        Location loc = sign.getLocation();
-        PacketPlayOutUpdateSign packet = new PacketPlayOutUpdateSign(loc
-                .getBlock().getX(), loc.getBlock().getY(), loc.getBlock()
-                .getZ(), lines);
-        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
+        player.sendSignChange(sign.getLocation(), lines);
     }
 
 }
