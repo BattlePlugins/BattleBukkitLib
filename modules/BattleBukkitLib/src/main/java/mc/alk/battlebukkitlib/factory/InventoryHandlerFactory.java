@@ -1,29 +1,13 @@
 package mc.alk.battlebukkitlib.factory;
 
 import mc.alk.battlebukkitlib.handlers.IInventoryHandler;
-import mc.euro.version.Version;
-import mc.euro.version.VersionFactory;
-
-import org.bukkit.Server;
 
 public class InventoryHandlerFactory {
 
-    public static IInventoryHandler getNewInstance() {
-        Version<Server> server = VersionFactory.getServerVersion();
-        IInventoryHandler handler = null;
-        Class clazz = null;
+    private static HandlerFactory<IInventoryHandler> factory = new HandlerFactory<IInventoryHandler>();
 
-        try {
-            Class<?>[] args = {};
-            if (server.isGreaterThanOrEqualTo("1.4.5")) {
-                clazz = Class.forName("mc.alk.battlebukkitlib.compat.v1_4_5.InventoryHandler");
-            } else if (server.isLessThan("1.4.5")) {
-                clazz = Class.forName("mc.alk.battlebukkitlib.compat.v1_4_2.InventoryHandler");
-            }
-            handler = (IInventoryHandler) clazz.getConstructor(args).newInstance((Object[]) args);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+    public static IInventoryHandler getNewInstance() {
+        IInventoryHandler handler = factory.getNewInstance("InventoryHandler");
         return (handler == null) ? IInventoryHandler.NULL_HANDLER : handler;
     }
 

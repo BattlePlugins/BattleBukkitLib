@@ -1,4 +1,4 @@
-package mc.alk.battlebukkitlib.compat.v1_4_6;
+package mc.alk.battlebukkitlib.compat.v1_14_R1;
 
 import java.awt.Color;
 import java.util.List;
@@ -18,24 +18,42 @@ public class InventoryHandler implements IInventoryHandler {
 
     @Override
     public void setColor(ItemStack itemStack, Color color) {
-        if (!itemStack.hasItemMeta() || !(itemStack.getItemMeta() instanceof LeatherArmorMeta)) {
+        if (!itemStack.hasItemMeta()) {
             return;
         }
 
-        org.bukkit.Color bukkitColor = getBukkitColor(color);
-        LeatherArmorMeta armorMeta = (LeatherArmorMeta) itemStack.getItemMeta();
-        armorMeta.setColor(bukkitColor);
-        itemStack.setItemMeta(armorMeta);
+        if (itemStack.getItemMeta() instanceof LeatherArmorMeta) {
+            org.bukkit.Color bukkitColor = getBukkitColor(color);
+            LeatherArmorMeta armorMeta = (LeatherArmorMeta) itemStack.getItemMeta();
+            armorMeta.setColor(bukkitColor);
+            itemStack.setItemMeta(armorMeta);
+        }
+
+        if (itemStack.getItemMeta() instanceof PotionMeta) {
+            org.bukkit.Color bukkitColor = getBukkitColor(color);
+            PotionMeta potionMeta = (PotionMeta) itemStack.getItemMeta();
+            potionMeta.setColor(bukkitColor);
+            itemStack.setItemMeta(potionMeta);
+        }
     }
 
     @Override
     public Color getColor(ItemStack itemStack) {
-        if (!itemStack.hasItemMeta() || !(itemStack.getItemMeta() instanceof LeatherArmorMeta)) {
+        if (!itemStack.hasItemMeta()) {
             return null;
         }
 
-        LeatherArmorMeta armorMeta = (LeatherArmorMeta) itemStack.getItemMeta();
-        return new Color(armorMeta.getColor().getRed(), armorMeta.getColor().getGreen(), armorMeta.getColor().getBlue());
+        if (itemStack instanceof LeatherArmorMeta) {
+            LeatherArmorMeta armorMeta = (LeatherArmorMeta) itemStack.getItemMeta();
+            return new Color(armorMeta.getColor().getRed(), armorMeta.getColor().getGreen(), armorMeta.getColor().getBlue());
+        }
+
+        if (itemStack instanceof PotionMeta) {
+            PotionMeta potionMeta = (PotionMeta) itemStack.getItemMeta();
+            return new Color(potionMeta.getColor().getRed(), potionMeta.getColor().getGreen(), potionMeta.getColor().getBlue());
+        }
+
+        return null;
     }
 
     @Override
@@ -133,22 +151,42 @@ public class InventoryHandler implements IInventoryHandler {
 
     @Override
     public void setUnbreakable(ItemStack itemStack, boolean unbreakable) {
+        if (!itemStack.hasItemMeta()) {
+            return;
+        }
 
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setUnbreakable(unbreakable);
+        itemStack.setItemMeta(itemMeta);
     }
 
     @Override
     public boolean isUnbreakable(ItemStack itemStack) {
-        return false;
+        if (!itemStack.hasItemMeta()) {
+            return false;
+        }
+
+        return itemStack.getItemMeta().isUnbreakable();
     }
 
     @Override
-    public void setCustomModelData(ItemStack itemstack, int data) {
+    public void setCustomModelData(ItemStack itemStack, int data) {
+        if (!itemStack.hasItemMeta()) {
+            return;
+        }
 
+        ItemMeta itemMeta = (ItemMeta) itemStack;
+        itemMeta.setCustomModelData(data);
+        itemStack.setItemMeta(itemMeta);
     }
 
     @Override
-    public int getCustomModelData(ItemStack itemstack) {
-        return 0;
+    public int getCustomModelData(ItemStack itemStack) {
+        if (!itemStack.hasItemMeta() || !(itemStack.getItemMeta().hasCustomModelData())) {
+            return 0;
+        }
+
+        return itemStack.getItemMeta().getCustomModelData();
     }
 
     @Override

@@ -1,37 +1,162 @@
 package mc.alk.battlebukkitlib.compat.v1_4_5;
 
 import java.awt.Color;
+import java.util.List;
 
 import mc.alk.battlebukkitlib.handlers.IInventoryHandler;
 
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class InventoryHandler implements IInventoryHandler {
 
     @Override
-    public void setItemColor(ItemStack itemStack, Color color) {
-        org.bukkit.Color bukkitColor = getBukkitColor(color);
-        LeatherArmorMeta lam = (LeatherArmorMeta) itemStack.getItemMeta();
-        lam.setColor(bukkitColor);
-        itemStack.setItemMeta(lam);
-    }
+    public void setColor(ItemStack itemStack, Color color) {
+        if (!itemStack.hasItemMeta() || !(itemStack.getItemMeta() instanceof LeatherArmorMeta)) {
+            return;
+        }
 
-    public static org.bukkit.Color getBukkitColor(Color color) {
-        return org.bukkit.Color.fromRGB(color.getRed(), color.getGreen(),
-                color.getBlue());
+        org.bukkit.Color bukkitColor = getBukkitColor(color);
+        LeatherArmorMeta armorMeta = (LeatherArmorMeta) itemStack.getItemMeta();
+        armorMeta.setColor(bukkitColor);
+        itemStack.setItemMeta(armorMeta);
     }
 
     @Override
-    public String getCustomName(ItemStack itemStack) {
-        ItemMeta im = itemStack.getItemMeta();
-
-        if (im == null) {
-            return itemStack.getType().name().toLowerCase();
+    public Color getColor(ItemStack itemStack) {
+        if (!itemStack.hasItemMeta() || !(itemStack.getItemMeta() instanceof LeatherArmorMeta)) {
+            return null;
         }
-        String displayName = im.getDisplayName();
-        return displayName == null || displayName.isEmpty() ? itemStack
-                .getType().name().toLowerCase() : displayName;
+
+        LeatherArmorMeta armorMeta = (LeatherArmorMeta) itemStack.getItemMeta();
+        return new Color(armorMeta.getColor().getRed(), armorMeta.getColor().getGreen(), armorMeta.getColor().getBlue());
+    }
+
+    @Override
+    public List<PotionEffect> getCustomEffects(ItemStack itemStack) {
+        if (!itemStack.hasItemMeta() || !(itemStack.getItemMeta() instanceof PotionMeta)) {
+            return null;
+        }
+
+        PotionMeta potionMeta = (PotionMeta) itemStack.getItemMeta();
+        return potionMeta.getCustomEffects();
+    }
+
+    @Override
+    public void addCustomEffect(ItemStack itemStack, PotionEffect effect) {
+        if (!itemStack.hasItemMeta() || !(itemStack.getItemMeta() instanceof PotionMeta)) {
+            return;
+        }
+
+        PotionMeta potionMeta = (PotionMeta) itemStack.getItemMeta();
+        potionMeta.addCustomEffect(effect, true);
+        itemStack.setItemMeta(potionMeta);
+    }
+
+    @Override
+    public void removeCustomEffect(ItemStack itemStack, PotionEffectType effectType) {
+        if (!itemStack.hasItemMeta() || !(itemStack.getItemMeta() instanceof PotionMeta)) {
+            return;
+        }
+
+        PotionMeta potionMeta = (PotionMeta) itemStack.getItemMeta();
+        potionMeta.removeCustomEffect(effectType);
+        itemStack.setItemMeta(potionMeta);
+    }
+
+    @Override
+    public void setLore(ItemStack itemStack, List<String> lore) {
+        if (!itemStack.hasItemMeta()) {
+            return;
+        }
+
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setLore(lore);
+        itemStack.setItemMeta(itemMeta);
+    }
+
+    @Override
+    public List<String> getLore(ItemStack itemStack) {
+        if (!itemStack.hasItemMeta()) {
+            return null;
+        }
+
+        return itemStack.getItemMeta().getLore();
+    }
+
+    @Override
+    public void setDisplayName(ItemStack itemStack, String displayName) {
+        if (!itemStack.hasItemMeta()) {
+            return;
+        }
+
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setDisplayName(displayName);
+        itemStack.setItemMeta(itemMeta);
+    }
+
+    @Override
+    public String getDisplayName(ItemStack itemStack) {
+        if (!itemStack.hasItemMeta()) {
+            return null;
+        }
+
+        return itemStack.getItemMeta().getDisplayName();
+    }
+
+    @Override
+    public void setOwnerName(ItemStack itemStack, String ownerName) {
+        if (!itemStack.hasItemMeta() || !(itemStack.getItemMeta() instanceof SkullMeta)) {
+            return;
+        }
+
+        SkullMeta skullMeta = (SkullMeta) itemStack.getItemMeta();
+        skullMeta.setOwner(ownerName);
+        itemStack.setItemMeta(skullMeta);
+    }
+
+    @Override
+    public String getOwnerName(ItemStack itemStack) {
+        if (!itemStack.hasItemMeta() || !(itemStack.getItemMeta() instanceof SkullMeta)) {
+            return null;
+        }
+
+        SkullMeta skullMeta = (SkullMeta) itemStack.getItemMeta();
+        return skullMeta.getOwner();
+    }
+
+    @Override
+    public void setUnbreakable(ItemStack itemStack, boolean unbreakable) {
+
+    }
+
+    @Override
+    public boolean isUnbreakable(ItemStack itemStack) {
+        return false;
+    }
+
+    @Override
+    public void setCustomModelData(ItemStack itemstack, int data) {
+
+    }
+
+    @Override
+    public int getCustomModelData(ItemStack itemstack) {
+        return 0;
+    }
+
+    @Override
+    public boolean isEnderChest(InventoryType type) {
+        return type == InventoryType.ENDER_CHEST;
+    }
+
+    private org.bukkit.Color getBukkitColor(Color color){
+        return org.bukkit.Color.fromRGB(color.getRed(), color.getGreen(), color.getBlue());
     }
 }

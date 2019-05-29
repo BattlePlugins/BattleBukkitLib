@@ -1,10 +1,12 @@
-package mc.alk.battlebukkitlib.compat.v1_4_6;
+package mc.alk.battlebukkitlib.compat.v1_10_R1;
 
 import java.awt.Color;
 import java.util.List;
 
 import mc.alk.battlebukkitlib.handlers.IInventoryHandler;
 
+import net.minecraft.server.v1_10_R1.NBTTagCompound;
+import org.bukkit.craftbukkit.v1_10_R1.inventory.CraftItemStack;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -133,12 +135,17 @@ public class InventoryHandler implements IInventoryHandler {
 
     @Override
     public void setUnbreakable(ItemStack itemStack, boolean unbreakable) {
-
+        net.minecraft.server.v1_10_R1.ItemStack nmsStack = CraftItemStack.asNMSCopy(itemStack);
+        NBTTagCompound tag = new NBTTagCompound();
+        tag.setBoolean("Unbreakable", unbreakable);
+        nmsStack.setTag(tag);
     }
 
     @Override
     public boolean isUnbreakable(ItemStack itemStack) {
-        return false;
+        net.minecraft.server.v1_10_R1.ItemStack nmsStack = CraftItemStack.asNMSCopy(itemStack);
+        NBTTagCompound tag = nmsStack.getTag();
+        return tag.getBoolean("Unbreakable");
     }
 
     @Override

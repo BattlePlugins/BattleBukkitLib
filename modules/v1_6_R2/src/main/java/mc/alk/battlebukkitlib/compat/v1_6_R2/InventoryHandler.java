@@ -1,4 +1,4 @@
-package mc.alk.battlebukkitlib.compat.v1_4_6;
+package mc.alk.battlebukkitlib.compat.v1_6_R2;
 
 import java.awt.Color;
 import java.util.List;
