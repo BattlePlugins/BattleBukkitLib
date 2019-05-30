@@ -49,6 +49,8 @@ public class InventoryUtil {
             Pattern.compile("color= ?([0-9]+),([0-9]+),([0-9]+)",Pattern.CASE_INSENSITIVE); //The pattern for matching lore
     private static final Pattern PATTERN_POSITION =
             Pattern.compile("position= ?\"([^\"]*)\"",Pattern.CASE_INSENSITIVE); //The pattern for matching position
+    private static final Pattern PATTERN_MODEL_DATA =
+            Pattern.compile("modelData= ?\"([^\"]*)\"",Pattern.CASE_INSENSITIVE); //The pattern for matching custom model data
     private static final Pattern PATTERN_EFFECT =
             Pattern.compile("effects= ?\"([^\"]*)\"",Pattern.CASE_INSENSITIVE); //The pattern for matching potion effects
 
@@ -89,7 +91,10 @@ public class InventoryUtil {
 
     enum ArmorType {
 
-        HELM, CHEST, LEGGINGS, BOOTS
+        HELM,
+        CHEST,
+        LEGGINGS,
+        BOOTS
     }
 
     public static Enchantment getEnchantmentByCommonName(String iname) {
@@ -270,18 +275,6 @@ public class InventoryUtil {
         return lvl;
     }
 
-	//
-    // private static Material getMaterial(ArmorLevel level) {
-    // switch(level){
-    // case WOOL: return Material.WOOL;
-    // case LEATHER : return Material.LEATHER;
-    // case IRON: return Material.IRON_BOOTS;
-    // case GOLD : return Material.GOLD_BOOTS;
-    // case CHAINMAIL: return Material.CHAINMAIL_BOOTS;
-    // case DIAMOND: return Material.DIAMOND;
-    // default : return null;
-    // }
-    // }
     public static int getItemAmount(ItemStack[] items, ItemStack is) {
         int count = 0;
         for (ItemStack item : items) {
@@ -908,6 +901,9 @@ public class InventoryUtil {
         Integer pos = parsePosition(str);
         if (pos != null){ /// we have position, so strip it
             str = PATTERN_POSITION.matcher(str).replaceFirst("");}
+        Integer modelData = parseModelData(str);
+        if (modelData != null) {
+            str = PATTERN_MODEL_DATA.matcher(str).replaceFirst("");}
         List<PotionEffect> effects = parseEffects(str);
         if (effects != null) { // we have the effect, so strip it
             str = PATTERN_EFFECT.matcher(str).replaceFirst("");}
@@ -939,6 +935,8 @@ public class InventoryUtil {
             handler.setDisplayName(is,displayName);
         if (ownerName != null)
             handler.setOwnerName(is,ownerName);
+        if (modelData != null)
+            handler.setCustomModelData(is, modelData);
         if (effects != null) {
             for (PotionEffect effect : effects) {
                 handler.addCustomEffect(is, effect);
@@ -961,6 +959,13 @@ public class InventoryUtil {
 
     public static Integer parsePosition(String str){
         Matcher m = PATTERN_POSITION.matcher(str);
+        if (!m.find())
+            return null;
+        return Integer.valueOf(m.group(1));
+    }
+
+    public static Integer parseModelData(String str){
+        Matcher m = PATTERN_MODEL_DATA.matcher(str);
         if (!m.find())
             return null;
         return Integer.valueOf(m.group(1));
