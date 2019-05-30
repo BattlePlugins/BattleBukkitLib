@@ -91,10 +91,7 @@ public class InventoryUtil {
 
     enum ArmorType {
 
-        HELM,
-        CHEST,
-        LEGGINGS,
-        BOOTS
+        HELM, CHEST, LEGGINGS, BOOTS
     }
 
     public static Enchantment getEnchantmentByCommonName(String iname) {
@@ -347,6 +344,7 @@ public class InventoryUtil {
 
     // / This allows for abbreviations to work, useful for sign etc
     /// This allows for abbreviations to work, useful for sign etc
+    // TODO: Find a way to fix this for 1.13+?
     public static int getMaterialID(String name) {
         name = name.toUpperCase();
         /// First try just getting it from the Material Name
@@ -890,30 +888,38 @@ public class InventoryUtil {
         if (DEBUG) Bukkit.getLogger().info("item=" + str);
 
         String ownerName = parseOwner(str);
-        if(ownerName != null){ //We have lore, so strip it.
-            str = PATTERN_OWNER.matcher(str).replaceFirst("");}
+        if(ownerName != null) //We have lore, so strip it.
+            str = PATTERN_OWNER.matcher(str).replaceFirst("");
+
         String displayName = parseDisplayName(str);
-        if(displayName != null){ //We have lore, so strip it.
-            str = PATTERN_DISPLAY_NAME.matcher(str).replaceFirst("");}
+        if(displayName != null) //We have lore, so strip it.
+            str = PATTERN_DISPLAY_NAME.matcher(str).replaceFirst("");
+
         Color c = parseColor(str);
-        if (c != null){ /// we have color, so strip it
-            str = PATTERN_COLOR.matcher(str).replaceFirst("");}
+        if (c != null) /// we have color, so strip it
+            str = PATTERN_COLOR.matcher(str).replaceFirst("");
+
         Integer pos = parsePosition(str);
-        if (pos != null){ /// we have position, so strip it
-            str = PATTERN_POSITION.matcher(str).replaceFirst("");}
+        if (pos != null) /// we have position, so strip it
+            str = PATTERN_POSITION.matcher(str).replaceFirst("");
+
         Integer modelData = parseModelData(str);
-        if (modelData != null) {
-            str = PATTERN_MODEL_DATA.matcher(str).replaceFirst("");}
+        if (modelData != null)
+            str = PATTERN_MODEL_DATA.matcher(str).replaceFirst("");
+
         List<PotionEffect> effects = parseEffects(str);
-        if (effects != null) { // we have the effect, so strip it
-            str = PATTERN_EFFECT.matcher(str).replaceFirst("");}
+        if (effects != null)  // we have the effect, so strip it
+            str = PATTERN_EFFECT.matcher(str).replaceFirst("");
+
         /// Parse Lore (thanks to Netherfoam)
         List<String> lore = parseLore(str);
-        if(lore != null){ //We have lore, so strip it.
-            str = PATTERN_LORE.matcher(str).replaceFirst("");}
+        if(lore != null) //We have lore, so strip it.
+            str = PATTERN_LORE.matcher(str).replaceFirst("");
+
         ItemStack is;
         String split[] = str.split(" +");
         is = InventoryUtil.getItemStack(split[0].trim());
+
         if (is == null)
             return null;
         int amt;
@@ -927,16 +933,22 @@ public class InventoryUtil {
             amt = 1;
         }
         is.setAmount(amt);
+
         if (lore != null && !lore.isEmpty())
             handler.setLore(is,lore);
-        if (c!=null)
+
+        if (c != null)
             handler.setColor(is, c);
+
         if (displayName != null)
             handler.setDisplayName(is,displayName);
+
         if (ownerName != null)
             handler.setOwnerName(is,ownerName);
+
         if (modelData != null)
             handler.setCustomModelData(is, modelData);
+
         if (effects != null) {
             for (PotionEffect effect : effects) {
                 handler.addCustomEffect(is, effect);
@@ -954,60 +966,66 @@ public class InventoryUtil {
                 Bukkit.getLogger().warning(ewl+" can not be applied to the item " + str);
             }
         }
+
         return is;
     }
 
-    public static Integer parsePosition(String str){
-        Matcher m = PATTERN_POSITION.matcher(str);
-        if (!m.find())
+    public static Integer parsePosition(String str) {
+        Matcher matcher = PATTERN_POSITION.matcher(str);
+        if (!matcher.find())
             return null;
-        return Integer.valueOf(m.group(1));
+
+        return Integer.valueOf(matcher.group(1));
     }
 
-    public static Integer parseModelData(String str){
-        Matcher m = PATTERN_MODEL_DATA.matcher(str);
-        if (!m.find())
+    public static Integer parseModelData(String str) {
+        Matcher matcher = PATTERN_MODEL_DATA.matcher(str);
+        if (!matcher.find())
             return null;
-        return Integer.valueOf(m.group(1));
+
+        return Integer.valueOf(matcher.group(1));
     }
 
-    public static List<PotionEffect> parseEffects(String str){
-        Matcher m = PATTERN_EFFECT.matcher(str);
-        if (!m.find())
+    public static List<PotionEffect> parseEffects(String str) {
+        Matcher matcher = PATTERN_EFFECT.matcher(str);
+        if (!matcher.find())
             return null;
+
         List<PotionEffect> effects = new ArrayList<PotionEffect>();
-        for (String eff : m.group(1).replace(" ", "").split(",")) {
+        for (String eff : matcher.group(1).replace(" ", "").split(",")) {
             effects.add(EffectUtil.parseArg(eff, 0, 120));
         }
         return effects;
     }
 
-    public static Color parseColor(String str){
-        Matcher m = PATTERN_COLOR.matcher(str);
-        if (!m.find())
+    public static Color parseColor(String str) {
+        Matcher matcher = PATTERN_COLOR.matcher(str);
+        if (!matcher.find())
             return null;
-        return new Color(Integer.valueOf(m.group(1)),Integer.valueOf(m.group(2)),Integer.valueOf(m.group(3)));
+
+        return new Color(Integer.valueOf(matcher.group(1)), Integer.valueOf(matcher.group(2)), Integer.valueOf(matcher.group(3)));
     }
 
-    public static String parseOwner(String str){
+    public static String parseOwner(String str) {
         Matcher matcher = PATTERN_OWNER.matcher(str);
-        if(!matcher.find()){
-            return null;}
+        if (!matcher.find())
+            return null;
+
         return matcher.group(1);
     }
 
-    public static String parseDisplayName(String str){
+    public static String parseDisplayName(String str) {
         Matcher matcher = PATTERN_DISPLAY_NAME.matcher(str);
-        if(!matcher.find()){
-            return null;}
+        if (!matcher.find())
+            return null;
 
         return ChatColor.translateAlternateColorCodes('&', matcher.group(1));
     }
 
-    public static LinkedList<String> parseLore(String str){
-        try{
+    public static LinkedList<String> parseLore(String str) {
+        try {
             Matcher matcher = PATTERN_LORE.matcher(str);
-            if(matcher.find()){
+            if (matcher.find()) {
                 //Replace color codes
                 String part = ChatColor.translateAlternateColorCodes('&', matcher.group(1));
                 //Now we can split it.
@@ -1022,8 +1040,7 @@ public class InventoryUtil {
                 //Success!
                 return lore;
             }
-        }
-        catch(Exception e){
+        } catch(Exception e){
            e.printStackTrace(); //Damn.
         }
         return null;
@@ -1048,23 +1065,32 @@ public class InventoryUtil {
         }
 
         Color color = handler.getColor(is);
-        if (color!=null)
+        if (color != null)
             sb.append("color=").append(color.getRed()).append(",").
                     append(color.getGreen()).append(",").append(color.getBlue()).append(" ");
-        String op = handler.getDisplayName(is);
-        if (op != null && !op.isEmpty())
-            sb.append("displayName=\"").append(op).append("\" ");
-        op = handler.getOwnerName(is);
-        if (op != null && !op.isEmpty())
-            sb.append("owner=\"").append(op).append("\" ");
+        String str = handler.getDisplayName(is);
+        if (str != null && !str.isEmpty())
+            sb.append("displayName=\"").append(str).append("\" ");
+
+        str = handler.getOwnerName(is);
+        if (str != null && !str.isEmpty())
+            sb.append("owner=\"").append(str).append("\" ");
+
+        int modelData = handler.getCustomModelData(is);
+        if (modelData > 0)
+            sb.append("modelData=\"").append(modelData).append("\" ");
+
         List<PotionEffect> effects = handler.getCustomEffects(is);
         if (effects != null && !effects.isEmpty()) {
             sb.append("effects=\"" + EffectUtil.getEnchantString(effects)).append("\" ");
         }
+
+        // Parse lore last
         List<String> lore = handler.getLore(is);
         if (lore != null && !lore.isEmpty()){
             sb.append("lore=\"").append(StringUtils.join(lore, "\\n")).append("\" ");
         }
+
         sb.append(is.getAmount());
         return sb.toString();
     }
