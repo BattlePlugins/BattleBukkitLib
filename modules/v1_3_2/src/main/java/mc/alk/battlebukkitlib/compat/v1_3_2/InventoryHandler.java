@@ -139,9 +139,9 @@ public class InventoryHandler implements IInventoryHandler {
 
         NBTTagCompound display = tag.getCompound("display");
         if (display == null || display.getString("Name") == null || display.getString("Name").isEmpty()) {
-            return display.getString("Name");
+            return itemStack.getType().name().toLowerCase();
         }
-        return itemStack.getType().name().toLowerCase();
+        return display.getString("Name");
     }
 
     @Override
