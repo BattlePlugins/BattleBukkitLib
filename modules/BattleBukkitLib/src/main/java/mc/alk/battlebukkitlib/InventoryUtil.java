@@ -24,7 +24,10 @@ import mc.euro.bukkitadapter.material.BattleMaterial;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
@@ -35,7 +38,7 @@ import org.bukkit.potion.PotionEffect;
 
 public class InventoryUtil {
 
-    static final String version = "InventoryUtil 2.2.0";
+    static final String version = "InventoryUtil 2.2.1";
     static final boolean DEBUG = false;
     static IInventoryHandler handler = InventoryHandlerFactory.getNewInstance();
 
@@ -84,12 +87,12 @@ public class InventoryUtil {
         }
     }
 
-    enum ArmorLevel {
+    public enum ArmorLevel {
 
         DISGUISE, WOOL, LEATHER, IRON, GOLD, CHAINMAIL, DIAMOND
     }
 
-    enum ArmorType {
+    public enum ArmorType {
 
         HELM, CHEST, LEGGINGS, BOOTS
     }
@@ -207,6 +210,27 @@ public class InventoryUtil {
                 ArmorLevel.CHAINMAIL));
     }
 
+    public static class PInv {
+        public ItemStack[] contents;
+        public ItemStack[] armor;
+        public PInv() {}
+        public PInv(PlayerInventory inventory) {
+            contents = inventory.getContents();
+            setArmor(inventory);
+        }
+        public PInv(List<ItemStack> items){
+            contents = items.toArray(new ItemStack[items.size()]);
+            armor = new ItemStack[0];
+        }
+        public void setArmor(PlayerInventory inventory){
+            this.armor=new ItemStack[4];
+            this.armor[ArmorType.HELM.ordinal()] = inventory.getHelmet();
+            this.armor[ArmorType.CHEST.ordinal()] = inventory.getChestplate();
+            this.armor[ArmorType.LEGGINGS.ordinal()] = inventory.getLeggings();
+            this.armor[ArmorType.BOOTS.ordinal()] = inventory.getBoots();
+        }
+    }
+
     public static int arrowCount(Player p) {
         return getItemAmount(p.getInventory().getContents(), new ItemStack(
                 Material.ARROW, 1));
@@ -268,6 +292,29 @@ public class InventoryUtil {
             } else if (lvl != a) {
                 return null;
             }
+        }
+        return lvl;
+    }
+
+    public static ArmorLevel hasArmorSet(List<ItemStack> inv) {
+        ArmorLevel armorSet[] = new ArmorLevel[4];
+        for (ItemStack is: inv){
+            Armor a = armor.get(is.getType());
+            if (a == null)
+                continue;
+            switch (a.type){
+                case BOOTS: armorSet[0] = a.level; break;
+                case LEGGINGS: armorSet[1] = a.level; break;
+                case CHEST: armorSet[2] = a.level; break;
+                case HELM: armorSet[3] = a.level; break;
+            }
+        }
+        ArmorLevel lvl = null;
+        for (ArmorLevel a: armorSet){
+            if (lvl == null)
+                lvl = a;
+            else if (lvl != a)
+                return null;
         }
         return lvl;
     }
@@ -878,6 +925,11 @@ public class InventoryUtil {
         }
     }
 
+    public static boolean isSameMaterial(ArmorLevel lvl, ItemStack is) {
+        Armor a = armor.get(is.getType());
+        return a != null && a.level == lvl;
+    }
+
     public static ItemStack parseItem(String str) throws Exception{
         /// items in yaml get stored like this {leather_chest=fireprot:5 1}
         /// so need to remove the {} and the first '='
@@ -1046,6 +1098,203 @@ public class InventoryUtil {
         return null;
     }
 
+    public static boolean isSameItem(ItemStack item1, ItemStack item2) {
+        return compareItem(item1, item2) == 0;
+    }
+
+    public static int compareItem(ItemStack item1, ItemStack item2) {
+        if (item1 == null && item2 == null)
+            return 0;
+        if (item1 == null)
+            return 1;
+        if (item2 == null)
+            return -1;
+        Integer i = item1.getType().getId();
+        Integer i2 = item2.getType().getId();
+        if (i== Material.AIR.getId() && i2 == Material.AIR.getId()) return 0;
+        if (i == Material.AIR.getId()) return 1;
+        if (i2 == Material.AIR.getId()) return -1;
+
+        int c = i.compareTo(i2);
+        if (c!= 0)
+            return c;
+        Short s= item1.getDurability();
+        c = s.compareTo(item2.getDurability());
+        if (c!= 0)
+            return c;
+        i = item1.getAmount();
+        c = i.compareTo(item2.getAmount());
+        if (c!= 0)
+            return c;
+        Map<Enchantment, Integer> e1 = item1.getEnchantments();
+        Map<Enchantment, Integer> e2 = item1.getEnchantments();
+        i = e1.size();
+        c = i.compareTo(e2.size());
+        if (c!=0)
+            return c;
+        for (Enchantment e: e1.keySet()){
+            if (!e2.containsKey(e))
+                return -1;
+            i = e1.get(e);
+            i2 = e2.get(e);
+            c = i.compareTo(i2);
+            if (c != 0)
+                return c;
+        }
+        return 0;
+    }
+
+    public static boolean isSameItems(List<ItemStack> items, PlayerInventory inv, boolean woolTeams) {
+        ItemStack[] contents =inv.getContents();
+        ItemStack[] armor = inv.getArmorContents();
+        /// This is a basic check to make sure we have the same number of items, and same total durability
+        /// Even with the 3 loops b/c there is no creation or sorting this is orders of magnitude faster
+        /// and takes almost no time.
+        int nitems1 =0, nitems2=0;
+        int dura1=0, dura2=0;
+
+        for (ItemStack is: items){
+            if (is == null || is.getType() == Material.AIR)
+                continue;
+            nitems1 += is.getAmount();
+            dura1 += is.getDurability()*is.getAmount();
+        }
+        for (ItemStack is: contents){
+            if (is == null || is.getType() == Material.AIR)
+                continue;
+            nitems2 += is.getAmount();
+            dura2 += is.getDurability()*is.getAmount();
+        }
+        if (!woolTeams){
+            for (ItemStack is: armor){
+                if (is == null || is.getType() == Material.AIR)
+                    continue;
+                nitems2 += is.getAmount();
+                dura2 += is.getDurability()*is.getAmount();
+            }
+        } else {
+            ItemStack is = inv.getHelmet();
+            if (is != null && is.getType() != Material.AIR && InventoryUtil.isRealArmor(is)){
+                nitems2 += is.getAmount();
+                dura2 += is.getDurability()*is.getAmount();
+            }
+            is = inv.getBoots();
+            if (is != null && is.getType() != Material.AIR){
+                nitems2 += is.getAmount();
+                dura2 += is.getDurability()*is.getAmount();
+            }
+            is = inv.getLeggings();
+            if (is != null && is.getType() != Material.AIR){
+                nitems2 += is.getAmount();
+                dura2 += is.getDurability()*is.getAmount();
+            }
+            is = inv.getChestplate();
+            if (is != null && is.getType() != Material.AIR){
+                nitems2 += is.getAmount();
+                dura2 += is.getDurability()*is.getAmount();
+            }
+        }
+        if (DEBUG) Bukkit.getLogger().info("nitems1  " + nitems1 +":" + nitems2+"      " + dura1 +"  : " + dura2);
+        if (nitems1 != nitems2 || dura1 != dura2)
+            return false;
+//        List<ItemStack> pitems = new ArrayList<ItemStack>();
+//
+//		/// Now that the basic check is over, the more intensive one starts
+//		//// I could check size right now if it werent for "air" and null blocks in inventories
+//		List<ItemStack> pitems = new ArrayList<ItemStack>();
+//		pitems.addAll(Arrays.asList(contents));
+//		if (woolTeams){ /// ignore helmet maybe
+//			if (inv.getHelmet() != null && InventoryUtil.isRealArmor(inv.getHelmet())) pitems.add(inv.getHelmet());
+//
+//			if (inv.getBoots() != null) pitems.add(inv.getBoots());
+//			if (inv.getLeggings() != null) pitems.add(inv.getLeggings());
+//			if (inv.getChestplate() != null) pitems.add(inv.getChestplate());
+//		} else {
+//			pitems.addAll(Arrays.asList(armor));
+//		}
+//		List<ItemStack> stacks = new ArrayList<ItemStack>();
+//		for (ItemStack is: items){
+//			if (is == null || is.getType() == Material.AIR)
+//				continue;
+//            final int max = 64;
+//			if (DEBUG)Log.info(" iss   " + is.getAmount() +"   " + is.getMaxStackSize() +"    " + is +" max="+max);
+//            if (is.getAmount() > max){
+//				is = is.clone();
+//				while (is.getAmount() > max){
+//					is.setAmount(is.getAmount() - max);
+//					ItemStack is2 = new ItemStack(is);
+//					is2.setAmount(max);
+//					stacks.add(is2);
+//				}
+//			}
+//			stacks.add(is);
+//		}
+//		items = stacks;
+//		Collections.sort(items, new ItemComparator());
+//		Collections.sort(pitems, new ItemComparator());
+//		int idx = 0;
+//		ItemStack is1, is2;
+//
+//		while (idx< items.size() && idx<pitems.size()){
+//			is1 = items.get(idx);
+//			is2 = pitems.get(idx);
+//			if (DEBUG) Log.info(idx  +" : " + is1 +"  " + is2);
+//			if ((is1==null || is1.getType() == Material.AIR) && (is2 == null || is2.getType() == Material.AIR))
+//				return true;
+//			if ((is1==null || is1.getType() == Material.AIR) || (is2 == null || is2.getType() == Material.AIR))
+//				return false;
+//			/// Alright, now that we dont have to worry about null or air
+//			if (!is1.equals(is2))
+//				return false;
+//			idx++;
+//		}
+//		/// Arrays are similar up until the smallest array
+//		/// If any array has more elements that are not null, then they are not equal
+//		for (int i=idx;i<items.size();i++){
+//			is1 = items.get(i);
+//			if (is1 != null && is1.getType() != Material.AIR)
+//				return false;
+//		}
+//		for (int i=idx;i<pitems.size();i++){
+//			is2 = pitems.get(i);
+//			if (is2 != null && is2.getType() != Material.AIR)
+//				return false;
+//		}
+        return true;
+    }
+
+    public static void addToInventory(Player p, PInv pinv) {
+        try{
+            PlayerInventory inv = p.getPlayer().getInventory();
+            for (ArmorType armor : ArmorType.values()){
+                final int ord = armor.ordinal();
+                if (ord >= pinv.armor.length)
+                    break;
+                final ItemStack newArmor = pinv.armor[ord];
+                if (newArmor == null || newArmor.getType()== Material.AIR)
+                    continue;
+                final ItemStack oldArmor = getArmorSlot(inv,armor);
+                boolean empty = (oldArmor == null || oldArmor.getType() == Material.AIR);
+                if (empty) {
+                    switch(armor){
+                        case HELM: inv.setHelmet(newArmor); break;
+                        case CHEST: inv.setChestplate(newArmor); break;
+                        case LEGGINGS: inv.setLeggings(newArmor); break;
+                        case BOOTS: inv.setBoots(newArmor); break;
+                    }
+                } else {
+                    addItemToInventory(p, newArmor, newArmor.getAmount(),false,false);
+                }
+            }
+            inv.setContents(pinv.contents);
+        } catch(Exception ex){
+            ex.printStackTrace();
+        }
+        try {p.getPlayer().updateInventory(); } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
     /**
      * For Serializing an item or printing
      * @param is ItemStack
@@ -1093,5 +1342,62 @@ public class InventoryUtil {
 
         sb.append(is.getAmount());
         return sb.toString();
+    }
+
+    public static List<ItemStack> getItemList(Player player){
+        List<ItemStack> items = new ArrayList<ItemStack>();
+        for (ItemStack item: player.getInventory().getArmorContents()){
+            if (item != null && item.getType() != Material.AIR){
+                items.add(item);}
+        }
+        for (ItemStack item: player.getInventory().getContents()){
+            if (item != null && item.getType() != Material.AIR){
+                items.add(item);}
+        }
+        return items;
+    }
+
+    public static ArrayList<ItemStack> getItemList(ConfigurationSection cs, String nodeString) {
+        if (cs == null || cs.getList(nodeString) == null)
+            return null;
+        ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+        try {
+            String str = null;
+            for (Object o : cs.getList(nodeString)){
+                try {
+                    str = o.toString();
+                    ItemStack is = InventoryUtil.parseItem(str);
+                    if (is != null){
+                        items.add(is);
+                    } else {
+                        Bukkit.getLogger().severe(cs.getCurrentPath() +"."+nodeString + " couldnt parse item " + str);
+                    }
+                } catch (IllegalArgumentException ex) {
+                    Bukkit.getLogger().severe(cs.getCurrentPath() +"."+nodeString + " couldnt parse item " + str);
+                } catch (Exception ex){
+                    Bukkit.getLogger().severe(cs.getCurrentPath() +"."+nodeString + " couldnt parse item " + str);
+                }
+            }
+        } catch (Exception ex){
+            Bukkit.getLogger().severe(cs.getCurrentPath() +"."+nodeString + " could not be parsed in config.yml");
+            ex.printStackTrace();
+        }
+        return items;
+    }
+
+    public static void dropItems(Player player) {
+        Location loc = player.getLocation();
+        World w = loc.getWorld();
+        PlayerInventory inv = player.getInventory();
+        for (ItemStack is: inv.getArmorContents()){
+            if (is == null || is.getType() == Material.AIR)
+                continue;
+            w.dropItemNaturally(loc, is);
+        }
+        for (ItemStack is: inv.getContents()){
+            if (is == null || is.getType() == Material.AIR)
+                continue;
+            w.dropItemNaturally(loc, is);
+        }
     }
 }
