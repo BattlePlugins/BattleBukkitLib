@@ -17,12 +17,12 @@ public class ExpHandlerFactory {
         Class clazz = null;
         try {
             Class<?>[] args = {};
-            if (server.isGreaterThanOrEqualTo("1.2.5")) {
+            if (server.isGreaterThanOrEqualTo("1.2.5") && server.isLessThan("1.3.2")) {
                 clazz = Class.forName("mc.alk.battlebukkitlib.compat.v1_2_5.ExpHandler");
-            } else if (server.isGreaterThan("1.2.5") && server.isGreaterThanOrEqualTo("1.3.2")) {
-                clazz = Class.forName("mc.alk.battlebukkitlib.compat.v1_3_2.InventoryHandler");
-            } else if (server.isGreaterThan("1.3.2") && server.isGreaterThanOrEqualTo("1.8")) {
-                clazz = Class.forName("mc.alk.battlebukkitlib.compat.v1_8_R1.InventoryHandler");
+            } else if (server.isGreaterThanOrEqualTo("1.3.2") && server.isLessThan("1.8")) {
+                clazz = Class.forName("mc.alk.battlebukkitlib.compat.v1_3_2.ExpHandler");
+            } else if (server.isGreaterThanOrEqualTo("1.8")) {
+                clazz = Class.forName("mc.alk.battlebukkitlib.compat.v1_8_R1.ExpHandler");
             }
 
             handler = (IExpHandler) clazz.getConstructor(args).newInstance((Object[]) args);
