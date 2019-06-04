@@ -17,7 +17,7 @@ public class EntityHandlerFactory {
             if (server.isGreaterThanOrEqualTo("1.2.5") && server.isLessThan("1.4.5")) {
                 clazz = Class.forName("mc.alk.battlebukkitlib.compat.v1_2_5.EntityHandler");
             } else if (server.isGreaterThanOrEqualTo("1.4.5")) {
-                clazz = Class.forName("mc.alk.battlebukkitlib.compat.v1_4_5.EventHandler");
+                clazz = Class.forName("mc.alk.battlebukkitlib.compat.v1_4_5.EntityHandler");
             }
 
             handler = (IEntityHandler) clazz.getConstructor(args).newInstance((Object[]) args);
