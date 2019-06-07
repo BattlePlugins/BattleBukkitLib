@@ -20,7 +20,7 @@ public class InventoryHandler implements IInventoryHandler {
 
     @Override
     public void setColor(ItemStack itemStack, Color color) {
-        if (!itemStack.hasItemMeta() || !(itemStack.getItemMeta() instanceof LeatherArmorMeta)) {
+        if (itemStack.getItemMeta() == null || !(itemStack.getItemMeta() instanceof LeatherArmorMeta)) {
             return;
         }
 
@@ -32,7 +32,7 @@ public class InventoryHandler implements IInventoryHandler {
 
     @Override
     public Color getColor(ItemStack itemStack) {
-        if (!itemStack.hasItemMeta() || !(itemStack.getItemMeta() instanceof LeatherArmorMeta)) {
+        if (itemStack.getItemMeta() == null || !(itemStack.getItemMeta() instanceof LeatherArmorMeta)) {
             return null;
         }
 
@@ -42,7 +42,7 @@ public class InventoryHandler implements IInventoryHandler {
 
     @Override
     public List<PotionEffect> getCustomEffects(ItemStack itemStack) {
-        if (!itemStack.hasItemMeta() || !(itemStack.getItemMeta() instanceof PotionMeta)) {
+        if (itemStack.getItemMeta() == null || !(itemStack.getItemMeta() instanceof PotionMeta)) {
             return null;
         }
 
@@ -52,7 +52,7 @@ public class InventoryHandler implements IInventoryHandler {
 
     @Override
     public void addCustomEffect(ItemStack itemStack, PotionEffect effect) {
-        if (!itemStack.hasItemMeta() || !(itemStack.getItemMeta() instanceof PotionMeta)) {
+        if (itemStack.getItemMeta() == null || !(itemStack.getItemMeta() instanceof PotionMeta)) {
             return;
         }
 
@@ -63,7 +63,7 @@ public class InventoryHandler implements IInventoryHandler {
 
     @Override
     public void removeCustomEffect(ItemStack itemStack, PotionEffectType effectType) {
-        if (!itemStack.hasItemMeta() || !(itemStack.getItemMeta() instanceof PotionMeta)) {
+        if (itemStack.getItemMeta() == null || !(itemStack.getItemMeta() instanceof PotionMeta)) {
             return;
         }
 
@@ -74,7 +74,7 @@ public class InventoryHandler implements IInventoryHandler {
 
     @Override
     public void setLore(ItemStack itemStack, List<String> lore) {
-        if (!itemStack.hasItemMeta()) {
+        if (itemStack.getItemMeta() == null) {
             return;
         }
 
@@ -85,7 +85,7 @@ public class InventoryHandler implements IInventoryHandler {
 
     @Override
     public List<String> getLore(ItemStack itemStack) {
-        if (!itemStack.hasItemMeta()) {
+        if (itemStack.getItemMeta() == null) {
             return null;
         }
 
@@ -94,7 +94,7 @@ public class InventoryHandler implements IInventoryHandler {
 
     @Override
     public void setDisplayName(ItemStack itemStack, String displayName) {
-        if (!itemStack.hasItemMeta()) {
+        if (itemStack.getItemMeta() == null) {
             return;
         }
 
@@ -105,7 +105,7 @@ public class InventoryHandler implements IInventoryHandler {
 
     @Override
     public String getDisplayName(ItemStack itemStack) {
-        if (!itemStack.hasItemMeta()) {
+        if (itemStack.getItemMeta() == null) {
             return null;
         }
 
@@ -114,7 +114,7 @@ public class InventoryHandler implements IInventoryHandler {
 
     @Override
     public void setOwnerName(ItemStack itemStack, String ownerName) {
-        if (!itemStack.hasItemMeta() || !(itemStack.getItemMeta() instanceof SkullMeta)) {
+        if (itemStack.getItemMeta() == null || !(itemStack.getItemMeta() instanceof SkullMeta)) {
             return;
         }
 
@@ -125,7 +125,7 @@ public class InventoryHandler implements IInventoryHandler {
 
     @Override
     public String getOwnerName(ItemStack itemStack) {
-        if (!itemStack.hasItemMeta() || !(itemStack.getItemMeta() instanceof SkullMeta)) {
+        if (itemStack.getItemMeta() == null || !(itemStack.getItemMeta() instanceof SkullMeta)) {
             return null;
         }
 
