@@ -52,8 +52,8 @@
     </modules>
     <repositories>
         <repository>
-            <id>rainbowcraft-repo</id>
-            <url>http://rainbowcraft.sytes.net/maven/repository/</url>
+            <id>battleplugins-repo</id>
+            <url>https://artifactory.battleplugins.org/artifactory/libs-snapshot-local/</url>
         </repository>
         <repository>
             <id>spigot-public</id>
@@ -111,10 +111,4 @@
             </plugin>
         </plugins>
     </build>
-    <distributionManagement>
-        <repository>
-            <id>rainbowcraft-repo</id>
-            <url>scp://rainbowcraft.sytes.net/var/www/maven/repository</url>
-        </repository>
-    </distributionManagement>
 </project>
