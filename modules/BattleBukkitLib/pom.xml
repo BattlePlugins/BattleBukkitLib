@@ -64,7 +64,7 @@
         <dependency>
             <groupId>mc.euro</groupId>
             <artifactId>BukkitAdapter</artifactId>
-            <version>1.2.5</version>
+            <version>1.2.7</version>
             <scope>compile</scope>
             <optional>false</optional>
         </dependency>
