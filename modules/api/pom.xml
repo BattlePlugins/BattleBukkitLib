@@ -35,13 +35,6 @@
             <scope>compile</scope>
             <optional>false</optional>
         </dependency>
-        <dependency>
-            <groupId>mkremins</groupId>
-            <artifactId>fanciful</artifactId>
-            <version>0.3.3-SNAPSHOT</version>
-            <scope>compile</scope>
-            <optional>true</optional>
-        </dependency>
     </dependencies>
     <build>
         <finalName>BattleBukkitLib-api</finalName>
@@ -56,37 +49,6 @@
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.1</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <artifactSet>
-                                <includes>
-                                    <include>mkremins:fanciful</include>
-                                </includes>
-                            </artifactSet>
-                            <relocations>
-                                <relocation>
-                                    <pattern>mkremins.fanciful</pattern>
-                                    <shadedPattern>mc.alk.battlebukkitlib.fanciful</shadedPattern>
-                                </relocation>
-                                <relocation>
-                                    <pattern>net.amoebaman.util</pattern>
-                                    <shadedPattern>mc.alk.battlebukkitlib.fanciful.amoebaman</shadedPattern>
-                                </relocation>
-                            </relocations>
-                            <minimizeJar>false</minimizeJar>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
