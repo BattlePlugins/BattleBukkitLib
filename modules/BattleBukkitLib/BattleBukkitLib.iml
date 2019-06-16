@@ -11,7 +11,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.bukkit:bukkit:1.5-R0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: mc.euro:Version:4.0.1" level="project" />
-    <orderEntry type="library" name="Maven: mc.euro:BukkitAdapter:1.2.5" level="project" />
+    <orderEntry type="library" name="Maven: mc.euro:BukkitAdapter:1.2.7" level="project" />
     <orderEntry type="library" name="Maven: mc.euro:BukkitInterface:4.0.1" level="project" />
     <orderEntry type="module" module-name="BattleBukkitLib-api" />
     <orderEntry type="module" module-name="BattleBukkitLib-v1_2_5" />
