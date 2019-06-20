@@ -379,19 +379,17 @@ public class InventoryUtil {
 
     // / Get the Material
     public static Material getMat(String name) {
-        Integer id =null;
-        try{
-            id = Integer.parseInt(name);
-        }catch(Exception e){/* do nothing*/}
-        if (id == null){
-            id = getMaterialID(name);
-        }
-        return id != -1 && id >= 0 ? MaterialAdapter.getMaterial(name) : null;
+        // Use .matchMaterial since in versions 1.12 and under, this also checks ID
+        Material mat = Material.matchMaterial(name);
+        if (mat == null)
+            mat = MaterialAdapter.getMaterial(name);
+
+        return mat;
     }
 
     // / This allows for abbreviations to work, useful for sign etc
     /// This allows for abbreviations to work, useful for sign etc
-    // TODO: Find a way to fix this for 1.13+?
+    /*
     public static int getMaterialID(String name) {
         name = name.toUpperCase();
         /// First try just getting it from the Material Name
@@ -413,6 +411,7 @@ public class InventoryUtil {
         }
         return mat != null ? mat.getId() : -1;
     }
+    */
 
     public static boolean hasItem(Player p, ItemStack itemType) {
         PlayerInventory inv = p.getInventory();
