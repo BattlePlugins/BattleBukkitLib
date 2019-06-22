@@ -1,7 +1,6 @@
 package mc.alk.battlebukkitlib;
 
-
-import java.awt.*;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -38,7 +37,7 @@ import org.bukkit.potion.PotionEffect;
 
 public class InventoryUtil {
 
-    static final String version = "InventoryUtil 2.2.1";
+    static final String version = "InventoryUtil 2.2.2";
     static final boolean DEBUG = false;
     static IInventoryHandler handler = InventoryHandlerFactory.getNewInstance();
 
@@ -54,6 +53,8 @@ public class InventoryUtil {
             Pattern.compile("position= ?\"([^\"]*)\"",Pattern.CASE_INSENSITIVE); //The pattern for matching position
     private static final Pattern PATTERN_MODEL_DATA =
             Pattern.compile("modelData= ?\"([^\"]*)\"",Pattern.CASE_INSENSITIVE); //The pattern for matching custom model data
+    private static final Pattern PATTERN_UNBREAKABLE =
+            Pattern.compile("unbreakable= ?\"([^\"]*)\"",Pattern.CASE_INSENSITIVE); //The pattern for matching unbreakable
     private static final Pattern PATTERN_EFFECT =
             Pattern.compile("effects= ?\"([^\"]*)\"",Pattern.CASE_INSENSITIVE); //The pattern for matching potion effects
 
@@ -958,6 +959,10 @@ public class InventoryUtil {
         if (modelData != null)
             str = PATTERN_MODEL_DATA.matcher(str).replaceFirst("");
 
+        Boolean unbreakable = parseUnbreakable(str);
+        if (unbreakable != null)
+            str = PATTERN_UNBREAKABLE.matcher(str).replaceFirst("");
+
         List<PotionEffect> effects = parseEffects(str);
         if (effects != null)  // we have the effect, so strip it
             str = PATTERN_EFFECT.matcher(str).replaceFirst("");
@@ -1000,6 +1005,9 @@ public class InventoryUtil {
         if (modelData != null)
             handler.setCustomModelData(is, modelData);
 
+        if (unbreakable != null)
+            handler.setUnbreakable(is, unbreakable);
+
         if (effects != null) {
             for (PotionEffect effect : effects) {
                 handler.addCustomEffect(is, effect);
@@ -1027,6 +1035,14 @@ public class InventoryUtil {
             return null;
 
         return Integer.valueOf(matcher.group(1));
+    }
+
+    public static Boolean parseUnbreakable(String str) {
+        Matcher matcher = PATTERN_UNBREAKABLE.matcher(str);
+        if (!matcher.find())
+            return null;
+
+        return Boolean.valueOf(matcher.group(1));
     }
 
     public static Integer parseModelData(String str) {
@@ -1327,6 +1343,10 @@ public class InventoryUtil {
         int modelData = handler.getCustomModelData(is);
         if (modelData > 0)
             sb.append("modelData=\"").append(modelData).append("\" ");
+
+        boolean unbreakable = handler.isUnbreakable(is);
+        if (!unbreakable)
+            sb.append("unbreakable=\"").append(unbreakable).append("\" ");
 
         List<PotionEffect> effects = handler.getCustomEffects(is);
         if (effects != null && !effects.isEmpty()) {
