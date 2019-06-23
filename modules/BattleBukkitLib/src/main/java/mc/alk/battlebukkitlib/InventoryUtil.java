@@ -37,7 +37,7 @@ import org.bukkit.potion.PotionEffect;
 
 public class InventoryUtil {
 
-    static final String version = "InventoryUtil 2.2.2";
+    static final String version = "InventoryUtil 2.2.3";
     static final boolean DEBUG = false;
     static IInventoryHandler handler = InventoryHandlerFactory.getNewInstance();
 
@@ -1345,7 +1345,7 @@ public class InventoryUtil {
             sb.append("modelData=\"").append(modelData).append("\" ");
 
         boolean unbreakable = handler.isUnbreakable(is);
-        if (!unbreakable)
+        if (unbreakable)
             sb.append("unbreakable=\"").append(unbreakable).append("\" ");
 
         List<PotionEffect> effects = handler.getCustomEffects(is);
