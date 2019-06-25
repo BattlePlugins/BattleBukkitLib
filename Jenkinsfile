@@ -5,4 +5,5 @@ library identifier: 'BattlePipelineLib@master', retriever: modernSCM(
 
 compileAndDeployMaven {
     repo = 'BattlePipelineLib'
+    target_path = 'modules/BattleBukkitLib/'
 }
