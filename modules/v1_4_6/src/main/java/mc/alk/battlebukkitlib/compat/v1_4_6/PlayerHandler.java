@@ -1,4 +1,4 @@
-package mc.alk.battlebukkitlib.compat.v1_2_5;
+package mc.alk.battlebukkitlib.compat.v1_4_6;
 
 import mc.alk.battlebukkitlib.handlers.IPlayerHandler;
 import org.bukkit.OfflinePlayer;

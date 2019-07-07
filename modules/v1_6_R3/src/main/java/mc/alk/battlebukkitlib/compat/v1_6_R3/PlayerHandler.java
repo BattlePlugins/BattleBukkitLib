@@ -1,4 +1,4 @@
-package mc.alk.battlebukkitlib.compat.v1_6_R1;
+package mc.alk.battlebukkitlib.compat.v1_6_R3;
 
 import mc.alk.battlebukkitlib.handlers.IPlayerHandler;
 import org.bukkit.Bukkit;

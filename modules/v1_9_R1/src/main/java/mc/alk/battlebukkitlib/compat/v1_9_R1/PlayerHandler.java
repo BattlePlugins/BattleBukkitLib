@@ -1,9 +1,14 @@
 package mc.alk.battlebukkitlib.compat.v1_9_R1;
 
 import mc.alk.battlebukkitlib.handlers.IPlayerHandler;
+import net.minecraft.server.v1_9_R1.PacketPlayOutChat;
+import net.minecraft.server.v1_9_R1.PacketPlayOutTitle;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.craftbukkit.v1_9_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_9_R1.util.CraftChatMessage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
@@ -60,5 +65,23 @@ public class PlayerHandler implements IPlayerHandler {
     @Override
     public UUID getID(OfflinePlayer player) {
         return player.getUniqueId();
+    }
+
+    @Override
+    public void sendTitle(Player player, String title, String subtitle, int time) {
+        player.sendTitle(ChatColor.translateAlternateColorCodes('&', title),
+                ChatColor.translateAlternateColorCodes('&', subtitle));
+
+        // Can't send times through bukkit methods in this version
+        PacketPlayOutTitle timesPacket = new PacketPlayOutTitle(time, time, time);
+        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(timesPacket);
+    }
+
+    @Override
+    public void sendActionBarText(Player player, String actionBarText) {
+        PacketPlayOutChat actionBarPacket = new PacketPlayOutChat(CraftChatMessage.fromString(ChatColor.translateAlternateColorCodes('&',
+                actionBarText))[0], (byte) 2);
+
+        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(actionBarPacket);
     }
 }

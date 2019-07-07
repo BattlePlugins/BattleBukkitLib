@@ -1,8 +1,13 @@
-package mc.alk.battlebukkitlib.compat.v1_6_R1;
+package mc.alk.battlebukkitlib.compat.v1_11_R1;
 
 import mc.alk.battlebukkitlib.handlers.IPlayerHandler;
+import net.minecraft.server.v1_11_R1.PacketPlayOutChat;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_11_R1.util.CraftChatMessage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
@@ -40,7 +45,7 @@ public class PlayerHandler implements IPlayerHandler {
 
     @Override
     public double getMaxHealth(Player player) {
-        return player.getMaxHealth();
+        return player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue();
     }
 
     @Override
@@ -58,16 +63,20 @@ public class PlayerHandler implements IPlayerHandler {
 
     @Override
     public UUID getID(OfflinePlayer player) {
-        return new UUID(0, player.getName().hashCode());
+        return player.getUniqueId();
     }
 
     @Override
     public void sendTitle(Player player, String title, String subtitle, int time) {
-        /* do nothing */
+        player.sendTitle(ChatColor.translateAlternateColorCodes('&', title),
+                ChatColor.translateAlternateColorCodes('&', subtitle), time, time, time);
     }
 
     @Override
     public void sendActionBarText(Player player, String actionBarText) {
-        /* do nothing */
+        PacketPlayOutChat actionBarPacket = new PacketPlayOutChat(CraftChatMessage.fromString(ChatColor.translateAlternateColorCodes('&',
+                actionBarText))[0], (byte) 2);
+
+        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(actionBarPacket);
     }
 }

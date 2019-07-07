@@ -19,6 +19,10 @@ public interface IPlayerHandler {
 
     UUID getID(OfflinePlayer player);
 
+    void sendTitle(Player player, String title, String subtitle, int time);
+
+    void sendActionBarText(Player player, String actionBarText);
+
     public static final IPlayerHandler NULL_HANDLER = new IPlayerHandler() {
 
         @Override
@@ -49,6 +53,16 @@ public interface IPlayerHandler {
         @Override
         public UUID getID(OfflinePlayer player) {
             return new UUID(0, player.getName().hashCode());
+        }
+
+        @Override
+        public void sendTitle(Player player, String title, String subtitle, int time) {
+            /* do nothing */
+        }
+
+        @Override
+        public void sendActionBarText(Player player, String actionBarText) {
+            /* do nothing */
         }
     };
 }

@@ -1,4 +1,4 @@
-package mc.alk.battlebukkitlib.compat.v1_6_R1;
+package mc.alk.battlebukkitlib.compat.v1_7_R4;
 
 import mc.alk.battlebukkitlib.handlers.IPlayerHandler;
 import org.bukkit.Bukkit;
@@ -58,7 +58,7 @@ public class PlayerHandler implements IPlayerHandler {
 
     @Override
     public UUID getID(OfflinePlayer player) {
-        return new UUID(0, player.getName().hashCode());
+        return player.getUniqueId();
     }
 
     @Override

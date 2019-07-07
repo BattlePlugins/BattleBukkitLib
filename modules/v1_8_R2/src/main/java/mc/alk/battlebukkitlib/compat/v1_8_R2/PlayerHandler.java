@@ -1,8 +1,14 @@
-package mc.alk.battlebukkitlib.compat.v1_6_R1;
+package mc.alk.battlebukkitlib.compat.v1_8_R2;
 
 import mc.alk.battlebukkitlib.handlers.IPlayerHandler;
+import net.minecraft.server.v1_8_R2.PacketPlayOutChat;
+import net.minecraft.server.v1_8_R2.PacketPlayOutTitle;
+import net.minecraft.server.v1_8_R2.PacketPlayOutTitle.EnumTitleAction;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.craftbukkit.v1_8_R2.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R2.util.CraftChatMessage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
@@ -58,16 +64,25 @@ public class PlayerHandler implements IPlayerHandler {
 
     @Override
     public UUID getID(OfflinePlayer player) {
-        return new UUID(0, player.getName().hashCode());
+        return player.getUniqueId();
     }
 
     @Override
     public void sendTitle(Player player, String title, String subtitle, int time) {
-        /* do nothing */
+        PacketPlayOutTitle titlePacket = new PacketPlayOutTitle(EnumTitleAction.TITLE, CraftChatMessage.fromString(ChatColor.translateAlternateColorCodes('&', title))[0]);
+        PacketPlayOutTitle subtitlePacket = new PacketPlayOutTitle(EnumTitleAction.SUBTITLE, CraftChatMessage.fromString(ChatColor.translateAlternateColorCodes('&', subtitle))[0]);
+        PacketPlayOutTitle timesPacket = new PacketPlayOutTitle(time, time, time);
+
+        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(titlePacket);
+        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(subtitlePacket);
+        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(timesPacket);
     }
 
     @Override
     public void sendActionBarText(Player player, String actionBarText) {
-        /* do nothing */
+        PacketPlayOutChat actionBarPacket = new PacketPlayOutChat(CraftChatMessage.fromString(ChatColor.translateAlternateColorCodes('&',
+                actionBarText))[0], (byte) 2);
+
+        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(actionBarPacket);
     }
 }

@@ -60,4 +60,14 @@ public class PlayerHandler implements IPlayerHandler {
     public UUID getID(OfflinePlayer player) {
         return player.getUniqueId();
     }
+
+    @Override
+    public void sendTitle(Player player, String title, String subtitle, int time) {
+        /* do nothing */
+    }
+
+    @Override
+    public void sendActionBarText(Player player, String actionBarText) {
+        /* do nothing */
+    }
 }
