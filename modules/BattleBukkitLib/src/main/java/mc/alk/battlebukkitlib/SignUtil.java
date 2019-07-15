@@ -3,6 +3,7 @@ package mc.alk.battlebukkitlib;
 import mc.alk.battlebukkitlib.factory.SignHandlerFactory;
 import mc.alk.battlebukkitlib.handlers.ISignHandler;
 
+import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 
@@ -17,5 +18,9 @@ public class SignUtil {
             }
         }
         handler.sendLines(player, sign, lines);
+    }
+
+    public static Block getAttatchedBlock(Sign sign) {
+        return handler.getAttachedBlock(sign);
     }
 }

@@ -1,6 +1,7 @@
 package mc.alk.battlebukkitlib.compat.v1_7_R4;
 
 import mc.alk.battlebukkitlib.handlers.ISignHandler;
+import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 
@@ -14,4 +15,10 @@ public class SignHandler implements ISignHandler {
         player.sendSignChange(sign.getLocation(), lines);
     }
 
+    @Override
+    public Block getAttachedBlock(Sign sign) {
+        org.bukkit.material.Sign signMaterial = (org.bukkit.material.Sign) sign.getData();
+        Block attachedBlock = sign.getBlock().getRelative(signMaterial.getAttachedFace());
+        return attachedBlock;
+    }
 }
