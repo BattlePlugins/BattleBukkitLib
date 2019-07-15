@@ -352,11 +352,10 @@ public class InventoryUtil {
         }
 
         dataValue = dataValue < 0 ? 0 : dataValue;
-        Material mat = getMat(name);
+        BattleMaterial mat = BattleMaterial.fromString(name + ":" + dataValue);
+        if (mat != null && mat != BattleMaterial.AIR)
+            return mat.parseItem();
 
-        if (mat != null && mat != Material.AIR) {
-            return new ItemStack(mat, 0, (short) dataValue);
-        }
         return null;
     }
 
