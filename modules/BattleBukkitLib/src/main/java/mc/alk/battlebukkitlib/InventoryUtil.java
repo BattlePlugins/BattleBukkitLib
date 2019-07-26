@@ -127,7 +127,7 @@ public class InventoryUtil {
             armor.put(BattleMaterial.PLAYER_HEAD.parseMaterial(), new Armor(ArmorType.HELM, ArmorLevel.DISGUISE));
             armor.put(BattleMaterial.CREEPER_HEAD.parseMaterial(), new Armor(ArmorType.HELM, ArmorLevel.DISGUISE));
             armor.put(BattleMaterial.DRAGON_HEAD.parseMaterial(), new Armor(ArmorType.HELM, ArmorLevel.DISGUISE));
-
+            armor.put(BattleMaterial.TURTLE_HELMET.parseMaterial(), new Armor(ArmorType.HELM, ArmorLevel.IRON));
         } catch (Throwable ex) {
             /* no errors as it's just an old bukkit that doesn't have this Material */
         }
