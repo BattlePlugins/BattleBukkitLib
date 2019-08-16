@@ -35,11 +35,11 @@ public class PlayerUtil {
         return handler.getID(player);
     }
 
-    public void sendTitle(Player player, String title, String subtitle, int time) {
+    public static void sendTitle(Player player, String title, String subtitle, int time) {
         handler.sendTitle(player, title, subtitle, time);
     }
 
-    public void sendActionBarText(Player player, String actionBarText) {
+    public static void sendActionBarText(Player player, String actionBarText) {
         handler.sendActionBarText(player, actionBarText);
     }
 }
