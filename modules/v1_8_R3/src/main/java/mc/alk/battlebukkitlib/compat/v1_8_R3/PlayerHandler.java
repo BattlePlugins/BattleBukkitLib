@@ -1,6 +1,7 @@
 package mc.alk.battlebukkitlib.compat.v1_8_R3;
 
 import mc.alk.battlebukkitlib.handlers.IPlayerHandler;
+import net.minecraft.server.v1_8_R3.ChatComponentText;
 import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
 import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
 import net.minecraft.server.v1_8_R3.PacketPlayOutTitle.EnumTitleAction;
@@ -8,7 +9,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_8_R3.util.CraftChatMessage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
@@ -69,8 +69,8 @@ public class PlayerHandler implements IPlayerHandler {
 
     @Override
     public void sendTitle(Player player, String title, String subtitle, int time) {
-        PacketPlayOutTitle titlePacket = new PacketPlayOutTitle(EnumTitleAction.TITLE, CraftChatMessage.fromString(ChatColor.translateAlternateColorCodes('&', title))[0]);
-        PacketPlayOutTitle subtitlePacket = new PacketPlayOutTitle(EnumTitleAction.SUBTITLE, CraftChatMessage.fromString(ChatColor.translateAlternateColorCodes('&', subtitle))[0]);
+        PacketPlayOutTitle titlePacket = new PacketPlayOutTitle(EnumTitleAction.TITLE, new ChatComponentText(ChatColor.translateAlternateColorCodes('&', title)));
+        PacketPlayOutTitle subtitlePacket = new PacketPlayOutTitle(EnumTitleAction.SUBTITLE, new ChatComponentText(ChatColor.translateAlternateColorCodes('&', subtitle)));
         PacketPlayOutTitle timesPacket = new PacketPlayOutTitle(time, time, time);
 
         ((CraftPlayer) player).getHandle().playerConnection.sendPacket(titlePacket);
@@ -80,9 +80,7 @@ public class PlayerHandler implements IPlayerHandler {
 
     @Override
     public void sendActionBarText(Player player, String actionBarText) {
-        PacketPlayOutChat actionBarPacket = new PacketPlayOutChat(CraftChatMessage.fromString(ChatColor.translateAlternateColorCodes('&',
-                actionBarText))[0], (byte) 2);
-
+        PacketPlayOutChat actionBarPacket = new PacketPlayOutChat(new ChatComponentText(ChatColor.translateAlternateColorCodes('&', actionBarText)), (byte) 2);
         ((CraftPlayer) player).getHandle().playerConnection.sendPacket(actionBarPacket);
     }
 }

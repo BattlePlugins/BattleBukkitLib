@@ -1,6 +1,7 @@
 package mc.alk.battlebukkitlib.compat.v1_13_R2;
 
 import mc.alk.battlebukkitlib.handlers.IPlayerHandler;
+import net.minecraft.server.v1_13_R2.ChatComponentText;
 import net.minecraft.server.v1_13_R2.ChatMessageType;
 import net.minecraft.server.v1_13_R2.PacketPlayOutChat;
 import org.bukkit.Bukkit;
@@ -8,7 +9,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.craftbukkit.v1_13_R2.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_13_R2.util.CraftChatMessage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
@@ -75,9 +75,7 @@ public class PlayerHandler implements IPlayerHandler {
 
     @Override
     public void sendActionBarText(Player player, String actionBarText) {
-        PacketPlayOutChat actionBarPacket = new PacketPlayOutChat(CraftChatMessage.fromString(ChatColor.translateAlternateColorCodes('&',
-                actionBarText))[0], ChatMessageType.GAME_INFO);
-
+        PacketPlayOutChat actionBarPacket = new PacketPlayOutChat(new ChatComponentText(ChatColor.translateAlternateColorCodes('&', actionBarText)), ChatMessageType.GAME_INFO);
         ((CraftPlayer) player).getHandle().playerConnection.sendPacket(actionBarPacket);
     }
 }

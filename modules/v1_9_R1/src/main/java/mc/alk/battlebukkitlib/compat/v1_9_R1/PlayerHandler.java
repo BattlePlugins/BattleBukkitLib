@@ -1,6 +1,7 @@
 package mc.alk.battlebukkitlib.compat.v1_9_R1;
 
 import mc.alk.battlebukkitlib.handlers.IPlayerHandler;
+import net.minecraft.server.v1_9_R1.ChatComponentText;
 import net.minecraft.server.v1_9_R1.PacketPlayOutChat;
 import net.minecraft.server.v1_9_R1.PacketPlayOutTitle;
 import org.bukkit.Bukkit;
@@ -79,9 +80,7 @@ public class PlayerHandler implements IPlayerHandler {
 
     @Override
     public void sendActionBarText(Player player, String actionBarText) {
-        PacketPlayOutChat actionBarPacket = new PacketPlayOutChat(CraftChatMessage.fromString(ChatColor.translateAlternateColorCodes('&',
-                actionBarText))[0], (byte) 2);
-
+        PacketPlayOutChat actionBarPacket = new PacketPlayOutChat(new ChatComponentText(ChatColor.translateAlternateColorCodes('&', actionBarText)), (byte) 2);
         ((CraftPlayer) player).getHandle().playerConnection.sendPacket(actionBarPacket);
     }
 }
