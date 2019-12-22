@@ -145,7 +145,7 @@ public class InventoryHandler implements IInventoryHandler {
     public boolean isUnbreakable(ItemStack itemStack) {
         net.minecraft.server.v1_7_R4.ItemStack nmsStack = CraftItemStack.asNMSCopy(itemStack);
         NBTTagCompound tag = nmsStack.getTag();
-        return tag.getBoolean("Unbreakable");
+        return tag != null && tag.getBoolean("Unbreakable");
     }
 
     @Override
