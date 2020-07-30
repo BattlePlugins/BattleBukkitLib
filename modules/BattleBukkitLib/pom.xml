@@ -280,8 +280,8 @@
         </dependency>
         <dependency>
             <groupId>mc.alk</groupId>
-            <artifactId>BattleBukkitLib-v1_15_R1</artifactId>
-            <version>v1_15_R1</version>
+            <artifactId>BattleBukkitLib-v1_16_R1</artifactId>
+            <version>v1_16_R1</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
